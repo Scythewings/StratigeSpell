@@ -24,8 +24,10 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                GenerateMap(x, y, 0, 1, 14, 18);
-                GenerateMap(x, y, 2, 2, 11, 21);
+                /*GenerateMap(x, y, 0, 1, 14, 18);
+                GenerateMap(x, y, 2, 2, 11, 21)*/
+                var _spawnTiles = Instantiate(_tile, new Vector3(x, y), Quaternion.identity);
+                _spawnTiles.name = $"Tile {x} {y}";
             }
         }
     }
