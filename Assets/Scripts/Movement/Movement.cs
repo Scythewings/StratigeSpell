@@ -28,50 +28,54 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (action >= 0)
+        if (action > -1)
         {
             transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, _movePoint.position) == 0f)
             {
 
-                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+                if (Input.GetKeyDown("d"))
                 {
-                    if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 2, 0f, 0f), .2f, _border))
-                    {
-                        _movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * 2, 0f, 0f);
-                        action--;
-                    }
+                    MoveDirection(2f, 0);
                 }
-                else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+                else if (Input.GetKeyDown("a"))
                 {
-                    if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical") * 2, 0f), .2f, _border))
-                    {
-                        _movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical") * 2, 0f);
-                        action--;
-                    }
+                    MoveDirection(-2f, 0);
+                }
+                else if (Input.GetKeyDown("w"))
+                {
+                    MoveDirection( 0, 2f);
+                }
+                else if (Input.GetKeyDown("s"))
+                {
+                    MoveDirection( 0, -2f);
                 }
             }           
         }
     }
 
-    public void Move(float input)
+    public void MoveDirection(float xDirection, float yDirection) 
     {
-        Vector3 targetVelocity = new Vector2(input, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref refVelocity, movementSmoothing);
-
-        if (input < 0 && !facingRight)
+        if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(xDirection, yDirection, 0f), .2f, _border))
         {
-            Flip();
+            _movePoint.position += new Vector3(xDirection, yDirection, 0f);
+            action--;
+            if (xDirection > 0 && !facingRight)
+            {
+                if (action != -1)
+                Flip();
+            }
+            else if (xDirection < 0 && facingRight)
+            {
+                if (action != -1)
+                Flip();
+            }
         }
-        else if (input > 0 && facingRight)
-        {
-            Flip();
-        }
-
+        
     }
 
-    void Flip()
+    public void Flip()
     {
         facingRight = !facingRight;
         Vector3 charScale = transform.localScale;
