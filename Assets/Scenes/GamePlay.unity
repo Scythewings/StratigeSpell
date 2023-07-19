@@ -3917,7 +3917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Health: 0
   _Damage: 0
-  _Action: 2
+  _Action: 10
 --- !u!1 &1609489016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4021,7 +4021,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1972312226, guid: 3889882fbec2b6647afc0f8da7a5083b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5841,5 +5841,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 829962409}
   - {fileID: 1608663309}
+  - {fileID: 829962409}
