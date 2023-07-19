@@ -10,18 +10,18 @@ public class CamController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera DefaultCam;
     [SerializeField] private CinemachineVirtualCamera FollowChar;
 
-    private CinemachineVirtualCamera currentCamera;
+    public CinemachineVirtualCamera currentCamera;
 
     void Start()
     {
-        cameras.Add(DefaultCam); 
+        cameras.Add(DefaultCam);
         cameras.Add(FollowChar);
         switchCamera(DefaultCam);
     }
 
     public void switchCamera(CinemachineVirtualCamera newCam)
     {
-        for (int i = 1; i > cameras.Count; i++)
+        for (int i = 0; i < cameras.Count; i++)
         {
             if (cameras[i] != newCam)
             {
@@ -35,8 +35,9 @@ public class CamController : MonoBehaviour
         }
     }
 
-    void Update()
+    public void switchFollowTarget(GameObject newTarget)
     {
-
+        FollowChar.Follow = newTarget.transform;
+        FollowChar.LookAt = newTarget.transform;
     }
 }

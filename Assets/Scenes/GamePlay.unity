@@ -236,7 +236,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -505,7 +505,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 20
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
@@ -576,6 +576,7 @@ MonoBehaviour:
   cameras: []
   DefaultCam: {fileID: 1387139542}
   FollowChar: {fileID: 2075810670}
+  currentCamera: {fileID: 0}
 --- !u!4 &1436570166
 Transform:
   m_ObjectHideFlags: 0
@@ -4216,6 +4217,7 @@ MonoBehaviour:
     m_Bits: 64
   basec: {fileID: 1608663310}
   action: 0
+  CameraScript: {fileID: 1436570165}
 --- !u!4 &1608663309
 Transform:
   m_ObjectHideFlags: 0
