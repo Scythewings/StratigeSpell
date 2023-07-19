@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    private bool moveUp;
-    private bool moveDown;
-    private bool moveLeft;
-    private bool moveRight;
-    private bool openMap;
-    private bool attack;
-    private bool skills;
+    public bool moveUp;
+    public bool moveDown;
+    public bool moveLeft;
+    public bool moveRight;
+    public bool openMap;
+    public bool attack;
+    public bool skills;
 
 
     private void Update()

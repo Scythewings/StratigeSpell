@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerInput))]
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
@@ -13,6 +14,7 @@ public class Movement : MonoBehaviour
     public float movementSmoothing = 0.05f;
     Vector3 refVelocity = Vector3.zero;
     public BaseChar basec;
+    public PlayerInput input;
     public int action;
 
     [SerializeField] private CamController CameraScript;
@@ -22,6 +24,7 @@ public class Movement : MonoBehaviour
     {
         _movePoint.parent = null;
         basec = GetComponent<BaseChar>();
+        input = GetComponent<PlayerInput>();
         action = basec.ActionPoint;
     }
 
@@ -35,19 +38,19 @@ public class Movement : MonoBehaviour
             if (Vector3.Distance(transform.position, _movePoint.position) == 0f)
             {
 
-                if (Input.GetKeyDown("d"))
+                if (input.moveRight)
                 {
                     MoveDirection(2f, 0);
                 }
-                else if (Input.GetKeyDown("a"))
+                else if (input.moveLeft)
                 {
                     MoveDirection(-2f, 0);
                 }
-                else if (Input.GetKeyDown("w"))
+                else if (input.moveUp)
                 {
                     MoveDirection( 0, 2f);
                 }
-                else if (Input.GetKeyDown("s"))
+                else if (input.moveDown)
                 {
                     MoveDirection( 0, -2f);
                 }
