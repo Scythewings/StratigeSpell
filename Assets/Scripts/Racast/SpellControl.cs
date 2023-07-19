@@ -26,12 +26,26 @@ public class SpellControl : MonoBehaviour
                 trailScript.SetTargetPos(hit.point);
                 var hittable = hit.collider.GetComponent<Hittable>();
                 hittable?.RecieveHit(hit);
+               
+                    
             }
             else
             {
                 var EndPos = _Spell.position + transform.position * _WeaponRange;
                 
+                
             }
         }
     }
+    
+    void Update()
+    {       
+        LookAtMouse();
+    }
+    public void LookAtMouse()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.up = (mousePos - new Vector2(transform.position.x, transform.position.y));
+    }
+   
 }
