@@ -8,6 +8,10 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _speed = 1f;
     [SerializeField] private Transform _movePoint;
     [SerializeField] private LayerMask _border;
+    [SerializeField] private Rigidbody2D rb;
+    public bool facingRight = true;
+    public float movementSmoothing = 0.05f;
+    Vector3 refVelocity = Vector3.zero;
     public BaseChar basec;
     public int action;
         
@@ -47,5 +51,29 @@ public class Movement : MonoBehaviour
                 }
             }           
         }
+    }
+
+    public void Move(float input)
+    {
+        Vector3 targetVelocity = new Vector2(input, rb.velocity.y);
+        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref refVelocity, movementSmoothing);
+
+        if (input < 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (input > 0 && facingRight)
+        {
+            Flip();
+        }
+
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 charScale = transform.localScale;
+        charScale.x *= -1;
+        transform.localScale = charScale;
     }
 }
