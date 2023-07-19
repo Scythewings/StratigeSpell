@@ -4191,7 +4191,7 @@ GameObject:
   - component: {fileID: 1608663308}
   - component: {fileID: 1608663310}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Bluetank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4214,8 +4214,12 @@ MonoBehaviour:
   _border:
     serializedVersion: 2
     m_Bits: 64
+  rb: {fileID: 0}
+  facingRight: 1
+  movementSmoothing: 0.05
   basec: {fileID: 1608663310}
   action: 0
+  CameraScript: {fileID: 0}
 --- !u!4 &1608663309
 Transform:
   m_ObjectHideFlags: 0
