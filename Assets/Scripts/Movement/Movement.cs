@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     public BaseChar basec;
     public PlayerInput input;
     public int action;
+    public SpellControl shoot;
 
     [SerializeField] private CamController CameraScript;
         
@@ -25,6 +26,7 @@ public class Movement : MonoBehaviour
         _movePoint.parent = null;
         basec = GetComponent<BaseChar>();
         input = GetComponent<PlayerInput>();
+        shoot = GetComponent<SpellControl>();
         action = basec.ActionPoint;
     }
 
@@ -56,6 +58,7 @@ public class Movement : MonoBehaviour
                 }
             }           
         }
+        shoot.Shoot(input.attack);
     }
 
     public void MoveDirection(float xDirection, float yDirection) 

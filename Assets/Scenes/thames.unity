@@ -4192,6 +4192,7 @@ GameObject:
   - component: {fileID: 1608663308}
   - component: {fileID: 1608663310}
   - component: {fileID: 1608663311}
+  - component: {fileID: 1608663312}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4222,6 +4223,7 @@ MonoBehaviour:
   basec: {fileID: 1608663310}
   input: {fileID: 1608663311}
   action: 0
+  shoot: {fileID: 0}
   CameraScript: {fileID: 1436570165}
 --- !u!4 &1608663309
 Transform:
@@ -4275,6 +4277,24 @@ MonoBehaviour:
   openMap: 0
   attack: 0
   skills: 0
+--- !u!114 &1608663312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608663307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6876b7f504a5e940983fbe03dfa2fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Speed: 0
+  _WeaponRange: 10
+  _Spell: {fileID: 1635680592}
+  _BulletTrail: {fileID: 7826028910334681044, guid: e13d4a45594436b4ea6791b1f46ffa10, type: 3}
+  _BulletTrailAnimator: {fileID: 0}
+  input: {fileID: 1608663311}
 --- !u!1 &1609489016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4316,7 +4336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1635680592}
   m_Layer: 0
-  m_Name: SpellP
+  m_Name: SpellPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4331,7 +4351,7 @@ Transform:
   m_GameObject: {fileID: 1635680591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.16, y: -0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
