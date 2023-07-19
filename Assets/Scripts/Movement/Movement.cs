@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     Vector3 refVelocity = Vector3.zero;
     public BaseChar basec;
     public int action;
+
+    [SerializeField] private CamController CameraScript;
         
     // Start is called before the first frame update
     void Start()
