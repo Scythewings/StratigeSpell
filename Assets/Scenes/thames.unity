@@ -4290,7 +4290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Speed: 0
-  _WeaponRange: 100
+  _WeaponRange: 10
   _Spell: {fileID: 1635680592}
   _BulletTrail: {fileID: 7826028910334681044, guid: e13d4a45594436b4ea6791b1f46ffa10, type: 3}
   _BulletTrailAnimator: {fileID: 0}
