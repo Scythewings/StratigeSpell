@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerInput))]
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
@@ -13,10 +14,10 @@ public class Movement : MonoBehaviour
     public float movementSmoothing = 0.05f;
     Vector3 refVelocity = Vector3.zero;
     public BaseChar basec;
+    public PlayerInput input;
     public int action;
     public Animator animator;
-   
-
+    public SpellControl shoot;
     [SerializeField] private CamController CameraScript;
         
     // Start is called before the first frame update
@@ -24,57 +25,63 @@ public class Movement : MonoBehaviour
     {
         _movePoint.parent = null;
         basec = GetComponent<BaseChar>();
+        input = GetComponent<PlayerInput>();
+        shoot = GetComponent<SpellControl>();
         action = basec.ActionPoint;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (action >= 0)
+        if (action > -1)
         {
             transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, _movePoint.position) == 0f)
             {
 
-                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+                if (input.moveRight)
                 {
-                    if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * 2, 0f, 0f), .2f, _border))
-                    {
-                        _movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * 2, 0f, 0f);
-                        action--;
-                    }
+                    MoveDirection(2f, 0);
                 }
-                else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+                else if (input.moveLeft)
                 {
-                    if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical") * 2, 0f), .2f, _border))
-                    {
-                        _movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical") * 2, 0f);
-                        action--;
-                    }
+                    MoveDirection(-2f, 0);
+                }
+                else if (input.moveUp)
+                {
+                    MoveDirection( 0, 2f);
+                }
+                else if (input.moveDown)
+                {
+                    MoveDirection( 0, -2f);
                 }
             }           
         }
-       
+        shoot.Shoot(input.attack);
     }
 
-    public void Move(float input)
+    public void MoveDirection(float xDirection, float yDirection) 
     {
-        Vector3 targetVelocity = new Vector2(input, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref refVelocity, movementSmoothing);
-
-        if (input < 0 && !facingRight)
+        if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(xDirection, yDirection, 0f), .2f, _border))
         {
-            Flip();
+            _movePoint.position += new Vector3(xDirection, yDirection, 0f);
+            action--;
+            if (xDirection > 0 && !facingRight)
+            {
+                if (action != -1)
+                Flip();
+            }
+            else if (xDirection < 0 && facingRight)
+            {
+                if (action != -1)
+                Flip();
+            }
         }
-        else if (input > 0 && facingRight)
-        {
-            Flip();
-        }
-
+        
     }
 
-    void Flip()
+    public void Flip()
     {
         facingRight = !facingRight;
         Vector3 charScale = transform.localScale;
