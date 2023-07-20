@@ -41,7 +41,7 @@ public class MouseController : MonoBehaviour
                 }
                 else
                 {
-                    var _path = _pathFinder.FindPath(_character.activeTile, overlayTile);
+                 _path = _pathFinder.FindPath(_character.activeTile, overlayTile);
                 }
             }
         }
