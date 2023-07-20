@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9105291076612032114}
   - component: {fileID: 7233086827033931786}
   - component: {fileID: 3278875056751824757}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Characters_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1676e2ff5cbd64783ba8523e090d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeTile: {fileID: 5526705255546763220, guid: 4ba996557672ff64c81a9d8e0c6b15c1, type: 3}
+  activeTile: {fileID: 0}
