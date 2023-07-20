@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CamController : MonoBehaviour
+public class CamController : PlayerInput
 {
     public List<CinemachineVirtualCamera> cameras;
 
     [SerializeField] private CinemachineVirtualCamera DefaultCam;
     [SerializeField] private CinemachineVirtualCamera FollowChar;
 
-    public CinemachineVirtualCamera currentCamera;
+    private CinemachineVirtualCamera currentCamera;
+
+    private bool open;
 
     void Start()
     {
@@ -39,5 +41,26 @@ public class CamController : MonoBehaviour
     {
         FollowChar.Follow = newTarget.transform;
         FollowChar.LookAt = newTarget.transform;
+    }
+
+    void Update()
+    {
+        Debug.Log("das");
+        if (openMap)
+        {
+            Debug.Log("kuybid");
+            if (!open)
+            {
+                Debug.Log("dog");
+                open = true;
+                switchCamera(FollowChar);
+            }
+        else
+            {
+                Debug.Log("balls");
+                open = false;
+                switchCamera(DefaultCam);
+            }
+        }
     }
 }
