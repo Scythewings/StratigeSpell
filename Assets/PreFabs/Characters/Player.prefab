@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1651874955
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1972312226, guid: 3889882fbec2b6647afc0f8da7a5083b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,9 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6101671216874772218}
-  - component: {fileID: 1303485096536125161}
-  - component: {fileID: 6495504899135075238}
-  - component: {fileID: 8865667404979660859}
+  - component: {fileID: 1511315078001836655}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -151,7 +149,7 @@ Transform:
   - {fileID: 2079863375667154270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1303485096536125161
+--- !u!114 &1511315078001836655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,52 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3323680884150086760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d159db6900366ce439a7fc6c41b378c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c1676e2ff5cbd64783ba8523e090d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _movePoint: {fileID: 2079863375667154270}
-  _border:
-    serializedVersion: 2
-    m_Bits: 64
-  rb: {fileID: 0}
-  facingRight: 1
-  movementSmoothing: 0.05
-  basec: {fileID: 6495504899135075238}
-  input: {fileID: 8865667404979660859}
-  action: 0
-  CameraScript: {fileID: 0}
---- !u!114 &6495504899135075238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3323680884150086760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6a82cb8959ce8d4a9e5ce068e2bd0e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Health: 0
-  _Damage: 0
-  _Action: 10
---- !u!114 &8865667404979660859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3323680884150086760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f9a2ef5150d464cbf3c66cbbf7325c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveUp: 0
-  moveDown: 0
-  moveLeft: 0
-  moveRight: 0
-  openMap: 0
-  attack: 0
-  skills: 0
+  activeTile: {fileID: 5526705255546763220, guid: 4ba996557672ff64c81a9d8e0c6b15c1, type: 3}
