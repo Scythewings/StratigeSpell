@@ -13,11 +13,12 @@ public class MouseController : MonoBehaviour
 
     private CharacterInfo _character;
     private PathFinder _pathFinder;
-    private List<OverlayTiles> _path = new List<OverlayTiles>();
+    private List<OverlayTiles> _path;
     // Start is called before the first frame update
     void Start()
     {
         _pathFinder = new PathFinder();
+        _path = new List<OverlayTiles>();
     }
 
     // Update is called once per frame
