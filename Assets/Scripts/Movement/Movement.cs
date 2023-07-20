@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     Vector3 refVelocity = Vector3.zero;
     public BaseChar basec;
     public int action;
+    public Animator animator;
+   
 
     [SerializeField] private CamController CameraScript;
         
@@ -53,6 +55,7 @@ public class Movement : MonoBehaviour
                 }
             }           
         }
+       
     }
 
     public void Move(float input)
