@@ -58,7 +58,7 @@ public class MouseController : MonoBehaviour
         var zIndex = _path[0].transform.position.z;
         _character.transform.position = Vector2.MoveTowards(_character.transform.position, _path[0].transform.position, step);
         _character.transform.position = new Vector3(_character.transform.position.x, _character.transform.position.y, zIndex);
-        if (Vector2.Distance(_character.transform.position, _path[0].transform.position) <0.0001f)
+        if (Vector2.Distance(_character.transform.position, _path[0].transform.position) <0.00001f)
         {
             PositionCharacterOnLine(_path[0]);
             _path.RemoveAt(0);
@@ -80,7 +80,7 @@ public class MouseController : MonoBehaviour
 
     private void PositionCharacterOnLine (OverlayTiles tile)
     {
-        _character.transform.position = new Vector3(tile.transform.position.x , tile.transform.position.y+0.001f, tile.transform.position.z);
+        _character.transform.position = new Vector3(tile.transform.position.x , tile.transform.position.y+0.00001f, tile.transform.position.z);
         _character.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
         _character.activeTile = tile;
     }
