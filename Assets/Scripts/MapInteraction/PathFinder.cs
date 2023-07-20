@@ -19,6 +19,7 @@ public class PathFinder
             if (currentOverTile == end)
             {
                 //Finalize our Path
+                return GetFinishList(start, end);
 
             }
             var neighbourTiles = GetNeighbourTiles(currentOverTile);
