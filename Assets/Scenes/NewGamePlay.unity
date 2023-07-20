@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  characterPrefab: {fileID: 3323680884150086760, guid: c1010899ad4fde140afe566ec22af851, type: 3}
+  characterPrefab: {fileID: 4479649296058300879, guid: f5399b28b2680f2429cfe3f9ac0bd3a5, type: 3}
 --- !u!212 &491324498
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12636,8 +12636,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 801504388}
   - {fileID: 1370969746}
+  - {fileID: 801504388}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1744088553

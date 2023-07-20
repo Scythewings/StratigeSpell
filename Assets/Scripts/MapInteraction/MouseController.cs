@@ -52,7 +52,7 @@ public class MouseController : MonoBehaviour
 
     private void MoveAlongPath()
     {
-        var step = Time.deltaTime;
+        var step = speed * Time.deltaTime;
         var zIndex = _path[0].transform.position.z;
         _character.transform.position = Vector2.MoveTowards(_character.transform.position, _path[0].transform.position, step);
         _character.transform.position = new Vector3(_character.transform.position.x, _character.transform.position.y, zIndex);
