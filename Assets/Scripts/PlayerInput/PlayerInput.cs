@@ -13,7 +13,7 @@ public class PlayerInput : MonoBehaviour
     public bool skills;
 
 
-    private void Update()
+    public void Update()
     {
         moveUp = Input.GetKeyDown("w");
         moveDown = Input.GetKeyDown("s");

@@ -16,8 +16,8 @@ public class Movement : MonoBehaviour
     public BaseChar basec;
     public PlayerInput input;
     public int action;
+    public Animator animator;
     public SpellControl shoot;
-
     [SerializeField] private CamController CameraScript;
         
     // Start is called before the first frame update
