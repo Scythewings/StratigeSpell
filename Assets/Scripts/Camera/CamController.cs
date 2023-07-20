@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CamController : PlayerInput
+public class CamController : MonoBehaviour
 {
     public List<CinemachineVirtualCamera> cameras;
 
     [SerializeField] private CinemachineVirtualCamera DefaultCam;
     [SerializeField] private CinemachineVirtualCamera FollowChar;
-
+    [SerializeField] public PlayerInput input;
+ 
     private CinemachineVirtualCamera currentCamera;
 
     private bool open;
@@ -45,8 +46,7 @@ public class CamController : PlayerInput
 
     void Update()
     {
-        Debug.Log("das");
-        if (openMap)
+        if (input.openMap)
         {
             Debug.Log("kuybid");
             if (!open)
