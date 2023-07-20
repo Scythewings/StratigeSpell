@@ -78,7 +78,7 @@ public class MouseController : MonoBehaviour
     private void PositionCharacterOnLine (OverlayTiles tile)
     {
         _character.transform.position = new Vector3(tile.transform.position.y+0.001f, tile.transform.position.z);
-        _character.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
+        _character.GetComponentInChildren<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
         _character.activeTile = tile;
     }
 }
