@@ -33,9 +33,10 @@ public class MouseController : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 overlayTile.GetComponent<OverlayTiles>().ShowTiles();
+
                 if (_character == null)
                 {
-                    _character = Instantiate(characterPrefab).GetComponentInChildren<CharacterInfo>();
+                    _character = Instantiate(characterPrefab).GetComponent<CharacterInfo>();
                     PositionCharacterOnLine(overlayTile);
                 }
                 else
@@ -44,8 +45,9 @@ public class MouseController : MonoBehaviour
                 }
             }
         }
-        if(_path.Count >0)
+        if(_path.Count > 0)
         {
+            Debug.Log("CheckPoint");
             MoveAlongPath();
         }
     }
@@ -75,10 +77,11 @@ public class MouseController : MonoBehaviour
         }
         return null;
     }
+
     private void PositionCharacterOnLine (OverlayTiles tile)
     {
-        _character.transform.position = new Vector3(tile.transform.position.y+0.001f, tile.transform.position.z);
-        _character.GetComponentInChildren<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
+        _character.transform.position = new Vector3(tile.transform.position.x , tile.transform.position.y+0.001f, tile.transform.position.z);
+        _character.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
         _character.activeTile = tile;
     }
 }
