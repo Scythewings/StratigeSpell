@@ -9,8 +9,11 @@ public class CamController : MonoBehaviour
 
     [SerializeField] private CinemachineVirtualCamera DefaultCam;
     [SerializeField] private CinemachineVirtualCamera FollowChar;
+    [SerializeField] public PlayerInput input;
+ 
+    private CinemachineVirtualCamera currentCamera;
 
-    public CinemachineVirtualCamera currentCamera;
+    private bool open;
 
     void Start()
     {
@@ -39,5 +42,25 @@ public class CamController : MonoBehaviour
     {
         FollowChar.Follow = newTarget.transform;
         FollowChar.LookAt = newTarget.transform;
+    }
+
+    void Update()
+    {
+        if (input.openMap)
+        {
+            Debug.Log("kuybid");
+            if (!open)
+            {
+                Debug.Log("dog");
+                open = true;
+                switchCamera(FollowChar);
+            }
+        else
+            {
+                Debug.Log("balls");
+                open = false;
+                switchCamera(DefaultCam);
+            }
+        }
     }
 }
