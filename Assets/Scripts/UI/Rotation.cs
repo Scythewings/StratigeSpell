@@ -5,18 +5,18 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
     private float _rotZ;
-    public float RotationSpeed;
-    public bool ClockRotation;
+    public float rotationSpeed;
+    public bool clockRotation;
     void Update()
     {
-        if(ClockRotation == false)
+        if(clockRotation == false)
         {
-            _rotZ += Time.deltaTime * RotationSpeed;
+            _rotZ += Time.deltaTime * rotationSpeed;
 
         }
         else
         {
-            _rotZ -= Time.deltaTime * RotationSpeed;
+            _rotZ -= Time.deltaTime * rotationSpeed;
 
         }
         transform.rotation = Quaternion.Euler(0, 0, _rotZ);
