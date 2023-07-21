@@ -286,8 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ad66830e83d1d47b70ddf8a3cb27fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SoundOnIcon: {fileID: 375366790}
-  SoundOffIcon: {fileID: 1620234093}
 --- !u!4 &105927142
 Transform:
   m_ObjectHideFlags: 0
@@ -2519,6 +2517,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664277373}
   m_CullTransparentMesh: 1
+--- !u!1 &1738496631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738496633}
+  - component: {fileID: 1738496632}
+  m_Layer: 0
+  m_Name: SoundScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1738496632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738496631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6bfa886bec6e6e46a4b20f2e4b70389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundOnIcon: {fileID: 375366790}
+  SoundOffIcon: {fileID: 1620234093}
+--- !u!4 &1738496633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738496631}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 414.49185, y: 245.33974, z: -19.717804}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1773177172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2706,8 +2750,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 105927141}
-        m_TargetAssemblyTypeName: MainMenuSytem, Assembly-CSharp
+      - m_Target: {fileID: 1738496632}
+        m_TargetAssemblyTypeName: SoundControl, Assembly-CSharp
         m_MethodName: OnButtonPress
         m_Mode: 1
         m_Arguments:
@@ -2813,4 +2857,5 @@ SceneRoots:
   - {fileID: 1773177176}
   - {fileID: 260111963}
   - {fileID: 105927142}
+  - {fileID: 1738496633}
   - {fileID: 748265148}
