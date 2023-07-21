@@ -16,7 +16,7 @@ public class Rotation : MonoBehaviour
         }
         else
         {
-            _rotZ += Time.deltaTime * RotationSpeed;
+            _rotZ -= Time.deltaTime * RotationSpeed;
 
         }
         transform.rotation = Quaternion.Euler(0, 0, _rotZ);
