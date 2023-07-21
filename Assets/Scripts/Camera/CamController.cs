@@ -69,6 +69,7 @@ public class CamController : MonoBehaviour
             open = !open;
         }
 
+        ///// CAMERA SHAKE /////
         if (shakeTimer > 0)
         {
             shakeTimer -= Time.deltaTime;
