@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimController : MonoBehaviour
 {
-    public Animator anim;
+    /*public Animator anim;
 
     void Start()
     {
@@ -14,5 +14,5 @@ public class AnimController : MonoBehaviour
    public void setBool (string name, bool input)
     {
         anim.SetBool(name, input);
-    }
+    }*/
 }

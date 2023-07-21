@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [RequireComponent(typeof(PlayerInput))]
 public class Movement : MonoBehaviour
 {
@@ -16,10 +17,13 @@ public class Movement : MonoBehaviour
     public BaseChar basec;
     public PlayerInput input;
     public int action;
-    public Animator animator;
+    public Animator anim;
     public SpellControl shoot;
     [SerializeField] private CamController CameraScript;
-        
+
+    public bool walk;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,37 +32,46 @@ public class Movement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         shoot = GetComponent<SpellControl>();
         action = basec.ActionPoint;
+        anim = GetComponentInChildren<Animator>();
+        walk = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (action > -1)
         {
+            
             transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, _movePoint.position) == 0f)
             {
-
                 if (input.moveRight)
                 {
+                    AnimPlay(CharacterAnim.Walk);
                     MoveDirection(2f, 0);
                 }
                 else if (input.moveLeft)
                 {
-                    MoveDirection(-2f, 0);
+                    AnimPlay(CharacterAnim.Walk);
+                    MoveDirection(-2f, 0); 
                 }
                 else if (input.moveUp)
                 {
+                    AnimPlay(CharacterAnim.Walk);
                     MoveDirection( 0, 2f);
                 }
                 else if (input.moveDown)
                 {
+                    AnimPlay(CharacterAnim.Walk);
                     MoveDirection( 0, -2f);
                 }
-            }           
+              
+            }
         }
-        shoot.Shoot(input.attack);
+        
     }
 
     public void MoveDirection(float xDirection, float yDirection) 
@@ -88,4 +101,28 @@ public class Movement : MonoBehaviour
         charScale.x *= -1;
         transform.localScale = charScale;
     }
+
+    //Trigger play once then stop.
+    public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
+    {
+        switch (_animType)
+            //break is for ending case
+        {
+            case CharacterAnim.Idle:
+                break;
+            case CharacterAnim.Walk:
+                anim.SetTrigger("Walk");
+                break;
+            case CharacterAnim.Atk:
+                break;
+        }
+
+    }
+}
+
+public enum CharacterAnim
+{
+    Idle,
+    Walk,
+    Atk,
 }
