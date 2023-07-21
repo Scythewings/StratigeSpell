@@ -31,9 +31,8 @@ public class SpellControl : MonoBehaviour
             }
             else
             {
-                var EndPos = _Spell.position + transform.position * _WeaponRange;
-                
-                
+                var EndPos = _Spell.position + transform.up * _WeaponRange;
+                trailScript.SetTargetPos(EndPos);
             }
         }
     }

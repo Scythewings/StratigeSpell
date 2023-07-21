@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 832857459}
   - component: {fileID: 832857461}
   - component: {fileID: 832857460}
+  - component: {fileID: 832857462}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -472,6 +473,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &832857462
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832857458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 3
+  m_FrequencyGain: 5
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1387139541
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,6 +4240,7 @@ MonoBehaviour:
   basec: {fileID: 1608663310}
   input: {fileID: 0}
   action: 0
+  animator: {fileID: 0}
   shoot: {fileID: 0}
   CameraScript: {fileID: 1436570165}
 --- !u!4 &1608663309
@@ -4377,7 +4396,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1651874955
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1972312226, guid: 3889882fbec2b6647afc0f8da7a5083b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

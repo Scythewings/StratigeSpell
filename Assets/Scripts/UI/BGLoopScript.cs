@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BGLoopScript : MonoBehaviour
 {
-    [Range(-1f, 1f)]
-    public float scrollspeed = 0.5f;
+    [Range(-100f, 100f)]
+    public float scrollspeed = 1f;
     private float _offset;
     private Material _mat;
 
@@ -20,4 +20,6 @@ public class BGLoopScript : MonoBehaviour
         _offset += (Time.deltaTime * scrollspeed) / 10f;
         _mat.SetTextureOffset("_MainTex", new Vector2(_offset, 0));
     }
+
+
 }

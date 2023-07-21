@@ -10,10 +10,12 @@ public class CamController : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera DefaultCam;
     [SerializeField] private CinemachineVirtualCamera FollowChar;
     [SerializeField] public PlayerInput input;
- 
-    private CinemachineVirtualCamera currentCamera;
 
+    private CinemachineVirtualCamera currentCamera;
     private bool open;
+    private float shakeTimer;
+    private float goofy;
+    private float shakeTimerDur;
 
     void Start()
     {
@@ -44,23 +46,40 @@ public class CamController : MonoBehaviour
         FollowChar.LookAt = newTarget.transform;
     }
 
+    public void cameraShake(float intensity, float duration)
+    {
+        CinemachineBasicMultiChannelPerlin Noise = FollowChar.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        Noise.m_AmplitudeGain = intensity;
+        goofy = intensity;
+        shakeTimer = duration;
+    }
+
     void Update()
     {
         if (input.openMap)
         {
-            Debug.Log("kuybid");
             if (!open)
             {
-                Debug.Log("dog");
-                open = true;
                 switchCamera(FollowChar);
             }
         else
             {
-                Debug.Log("balls");
-                open = false;
                 switchCamera(DefaultCam);
             }
+            open = !open;
+        }
+
+        ///// CAMERA SHAKE /////
+        if (shakeTimer > 0)
+        {
+            shakeTimer -= Time.deltaTime;
+        }
+        else if (shakeTimer <= 0)
+        {
+            //timer over
+            CinemachineBasicMultiChannelPerlin Noise = FollowChar.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            Noise.m_AmplitudeGain = 0f;
+            Mathf.Lerp(goofy, 0f, shakeTimer / shakeTimerDur);
         }
     }
 }
