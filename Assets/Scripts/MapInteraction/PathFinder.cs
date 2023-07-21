@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class PathFinder
 {
-    public List<OverlayTiles> FindPath(OverlayTiles start, OverlayTiles end)
+    public List<OverlayTiles> FindPath(OverlayTiles start, OverlayTiles end) //work
     {
         List<OverlayTiles> openList = new List<OverlayTiles>();
         List<OverlayTiles> closedList = new List<OverlayTiles>();
         openList.Add(start);
         while (openList.Count > 0)
         {
+
             OverlayTiles currentOverTile = openList.OrderBy(x => x.F).First();
             openList.Remove(currentOverTile);
             closedList.Add(currentOverTile);
@@ -22,8 +23,7 @@ public class PathFinder
                 return GetFinishList(start, end);
 
             }
-            var neighbourTiles = GetNeighbourTiles(currentOverTile);
-            foreach (var neighbour in neighbourTiles)
+            foreach (var neighbour in GetNeighbourTiles(currentOverTile))
             {
                 if (neighbour.isBlocked || closedList.Contains(neighbour) || Mathf.Abs(currentOverTile.gridLocation.z - neighbour.gridLocation.z) > 1)
                 {
@@ -40,12 +40,13 @@ public class PathFinder
         }
         return new List<OverlayTiles>();
     }
-    private List<OverlayTiles> GetFinishList(OverlayTiles start, OverlayTiles end)
+    private List<OverlayTiles> GetFinishList(OverlayTiles start, OverlayTiles end) //work
     {
         List<OverlayTiles> finishedList = new List<OverlayTiles>();
         OverlayTiles currentTile = end;
         while (currentTile != start)
         {
+            
             finishedList.Add(currentTile);
             currentTile = currentTile.previous;
         }
@@ -53,12 +54,12 @@ public class PathFinder
         return finishedList;
     }
 
-    private int GetManhattenDistance(OverlayTiles start, OverlayTiles neighbour)
+    private int GetManhattenDistance(OverlayTiles start, OverlayTiles neighbour) //work
     {
         return Mathf.Abs(start.gridLocation.x - neighbour.gridLocation.x)+ Mathf.Abs(start.gridLocation.y - neighbour.gridLocation.y);
     }
 
-    private List<OverlayTiles> GetNeighbourTiles(OverlayTiles currentOverTile)
+    private List<OverlayTiles> GetNeighbourTiles(OverlayTiles currentOverTile) //work
     {
         var map = MapManager.Instance.map;
         List<OverlayTiles> neighbours = new List<OverlayTiles>();

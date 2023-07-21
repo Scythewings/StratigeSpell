@@ -28,12 +28,13 @@ public class OverlayTiles : MonoBehaviour
         }
     }
 
-    public void ShowTiles()
+    /*public void ShowTiles()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
     }
+    */
 
-    public void HideTiles()
+    public void HideTiles() //work
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
     }

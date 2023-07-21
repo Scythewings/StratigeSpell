@@ -6,10 +6,11 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
-public class MouseController : MonoBehaviour
+public class MouseController : MonoBehaviour //work
 {
     public float speed;
     public GameObject characterPrefab;
+    public GameObject cursor;
 
     private CharacterInfo _character;
     private PathFinder _pathFinder;
@@ -22,27 +23,29 @@ public class MouseController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void LateUpdate() //work
     {
-        var focusTilesHits = GetFocusedOnTile();
+        RaycastHit2D? focusTilesHits = GetFocusedOnTile();
 
         if (focusTilesHits.HasValue)
         { 
-            OverlayTiles overlayTile = focusTilesHits.Value.collider.GetComponent<OverlayTiles>();
-            transform.position = overlayTile.transform.position;
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = overlayTile.GetComponent<SpriteRenderer>().sortingOrder;
+            OverlayTiles overlayTile = focusTilesHits.Value.collider.gameObject.GetComponent<OverlayTiles>();
+            cursor.transform.position = overlayTile.transform.position;
+            cursor.gameObject.GetComponent<SpriteRenderer>().sortingOrder = overlayTile.GetComponent<SpriteRenderer>().sortingOrder;
             if (Input.GetButtonDown("Fire1"))
             {
-                overlayTile.GetComponent<OverlayTiles>().ShowTiles();
+                overlayTile.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
 
                 if (_character == null)
                 {
                     _character = Instantiate(characterPrefab).GetComponent<CharacterInfo>();
                     PositionCharacterOnLine(overlayTile);
-                }
+                    _character.activeTile = overlayTile;
+                } 
                 else
                 {
                  _path = _pathFinder.FindPath(_character.activeTile, overlayTile);
+                    overlayTile.gameObject.GetComponent<OverlayTiles>().HideTiles();
                 }
             }
         }
@@ -53,7 +56,7 @@ public class MouseController : MonoBehaviour
         }
     }
 
-    private void MoveAlongPath()
+    private void MoveAlongPath() //work
     {
         var step = speed * Time.deltaTime;
         var zIndex = _path[0].transform.position.z;
@@ -66,7 +69,7 @@ public class MouseController : MonoBehaviour
         }
     }
 
-    public RaycastHit2D? GetFocusedOnTile()
+    public RaycastHit2D? GetFocusedOnTile() //work
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -79,7 +82,7 @@ public class MouseController : MonoBehaviour
         return null;
     }
 
-    private void PositionCharacterOnLine (OverlayTiles tile)
+    private void PositionCharacterOnLine (OverlayTiles tile) //work
     {
         _character.transform.position = new Vector3(tile.transform.position.x , tile.transform.position.y+0.00001f, tile.transform.position.z);
         _character.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
