@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3323680884150086760, guid: c1010899ad4fde140afe566ec22af851, type: 3}
       propertyPath: m_Name
-      value: Player Variant
+      value: BlueTank
       objectReference: {fileID: 0}
     - target: {fileID: 6101671216874772218, guid: c1010899ad4fde140afe566ec22af851, type: 3}
       propertyPath: m_LocalPosition.x
@@ -138,4 +138,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standingOnTile: {fileID: 0}
   numberOfMovement: 3
+  attackRange: 1
   isMoving: 0

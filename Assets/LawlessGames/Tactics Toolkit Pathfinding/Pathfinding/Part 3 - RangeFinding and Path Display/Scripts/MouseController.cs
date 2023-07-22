@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using static finished3.ArrowTranslator;
 using static UnityEditor.Progress;
+using UnityEngine.TestTools;
 
 namespace finished3
 {
@@ -19,7 +20,6 @@ namespace finished3
         [SerializeField] private CharacterDetail _activeCharacter;
         [HideInInspector] private List<CharacterDetail> _activeCharacterList = new List<CharacterDetail>();
         private int _activeCharacterIndex = 0;
-
 
         private PathFinder pathFinder;
         private RangeFinder rangeFinder;
@@ -39,7 +39,12 @@ namespace finished3
 
         void LateUpdate()
         {
-            RaycastHit2D? hit = GetFocusedOnTile();
+            RaycastHit2D? hit = GetFocusedOnTile();          
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                SwitchCharacter();
+            }
 
             if (hit.HasValue)
             {
@@ -51,10 +56,7 @@ namespace finished3
                 {
                     path = pathFinder.FindPath(_activeCharacter.standingOnTile, tile, rangeFinderTiles);
 
-                    foreach (var item in rangeFinderTiles)
-                    {
-                        MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);
-                    }
+                    ClearArrowPath();
 
                     for (int i = 0; i < path.Count; i++)
                     {
@@ -75,11 +77,7 @@ namespace finished3
                         _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
                         _activeCharacterList.Add(_activeCharacter);
                         PositionCharacterOnLine(tile);
-                        _activeCharacterIndex = countCharacter;
-                        if (characterPrefab.Length == countCharacter)
-                        {
-                            GetInRangeTiles();
-                        }
+                        _activeCharacterIndex = countCharacter;                        
                     }
                     else
                     {
@@ -89,10 +87,16 @@ namespace finished3
                 }
             }
 
+            if (Input.GetKeyDown("w"))
+            {
+                GetInRangeTiles(_activeCharacter.attackRange);
+            }
+
             if (path.Count > 0 && _activeCharacter.isMoving)
             {
-                MoveAlongPath();
-            }
+                MoveAlongPath();               
+            }            
+
         }
 
         private void MoveAlongPath()
@@ -111,16 +115,16 @@ namespace finished3
 
             if (path.Count == 0)
             {
-                SwitchCharacter();
-                foreach (var item in rangeFinderTiles)
-                {
-                    MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);
-                }
-                GetInRangeTiles();
-                _activeCharacter.isMoving = false;
-
+                ClearArrowPath();                
             }
+        }
 
+        private void ClearArrowPath()
+        {
+            foreach (var item in rangeFinderTiles)
+            {
+                MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);
+            }
         }
 
         private void SwitchCharacter()
@@ -131,8 +135,10 @@ namespace finished3
             //Swap
             _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
             _activeCharacter = _activeCharacterList[_activeCharacterIndex];
+            int moverange = _activeCharacter.numberOfMovement;
 
             //Set up
+            GetInRangeTiles(moverange);
         }
 
         private void PositionCharacterOnLine(OverlayTile tile)
@@ -157,10 +163,9 @@ namespace finished3
             return null;
         }
 
-        private void GetInRangeTiles()
+        private void GetInRangeTiles(int range)
         {
-            rangeFinderTiles = rangeFinder.GetTilesInRange(new Vector2Int(_activeCharacter.standingOnTile.gridLocation.x, _activeCharacter.standingOnTile.gridLocation.y), _activeCharacter.numberOfMovement);
-
+            rangeFinderTiles = rangeFinder.GetTilesInRange(new Vector2Int(_activeCharacter.standingOnTile.gridLocation.x, _activeCharacter.standingOnTile.gridLocation.y), range);
             foreach (var item in rangeFinderTiles)
             {
                 item.ShowTile();

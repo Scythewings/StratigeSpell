@@ -6,6 +6,7 @@ namespace finished3
     {
         public OverlayTile standingOnTile;
         public int numberOfMovement = 3;
+        public int attackRange = 2;
         public bool isMoving = false;
     }
 }
