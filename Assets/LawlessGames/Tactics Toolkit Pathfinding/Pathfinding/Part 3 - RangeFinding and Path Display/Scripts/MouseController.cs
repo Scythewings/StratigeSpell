@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using static finished3.ArrowTranslator;
+using static UnityEditor.Progress;
 
 namespace finished3
 {
@@ -9,16 +10,22 @@ namespace finished3
     {
         public GameObject cursor;
         public float speed;
-        public GameObject characterPrefab;
-        public int movementRange = 3;
-        private CharacterInfo character;
+
+        //Character Setup
+        public GameObject[] characterPrefab;
+        private int countCharacter => _activeCharacterList.Count;
+
+        //Character Controller
+        [SerializeField] private CharacterDetail _activeCharacter;
+        [SerializeField] private List<CharacterDetail> _activeCharacterList = new List<CharacterDetail>();
+        private int _activeCharacterIndex = 0;
+
 
         private PathFinder pathFinder;
         private RangeFinder rangeFinder;
         private ArrowTranslator arrowTranslator;
         private List<OverlayTile> path;
         private List<OverlayTile> rangeFinderTiles;
-        private bool isMoving;
 
         private void Start()
         {
@@ -27,7 +34,6 @@ namespace finished3
             arrowTranslator = new ArrowTranslator();
 
             path = new List<OverlayTile>();
-            isMoving = false;
             rangeFinderTiles = new List<OverlayTile>();
         }
 
@@ -41,9 +47,9 @@ namespace finished3
                 cursor.transform.position = tile.transform.position;
                 cursor.gameObject.GetComponent<SpriteRenderer>().sortingOrder = tile.transform.GetComponent<SpriteRenderer>().sortingOrder;
 
-                if (rangeFinderTiles.Contains(tile) && !isMoving)
+                if (rangeFinderTiles.Contains(tile) && !_activeCharacter.isMoving)
                 {
-                    path = pathFinder.FindPath(character.standingOnTile, tile, rangeFinderTiles);
+                    path = pathFinder.FindPath(_activeCharacter.standingOnTile, tile, rangeFinderTiles);
 
                     foreach (var item in rangeFinderTiles)
                     {
@@ -52,7 +58,7 @@ namespace finished3
 
                     for (int i = 0; i < path.Count; i++)
                     {
-                        var previousTile = i > 0 ? path[i - 1] : character.standingOnTile;
+                        var previousTile = i > 0 ? path[i - 1] : _activeCharacter.standingOnTile;
                         var futureTile = i < path.Count - 1 ? path[i + 1] : null;
 
                         var arrow = arrowTranslator.TranslateDirection(previousTile, path[i], futureTile);
@@ -64,21 +70,26 @@ namespace finished3
                 {
                     tile.ShowTile();
 
-                    if (character == null)
+                    if (characterPrefab.Length != countCharacter)
                     {
-                        character = Instantiate(characterPrefab).GetComponent<CharacterInfo>();
+                        _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
+                        _activeCharacterList.Add(_activeCharacter);
                         PositionCharacterOnLine(tile);
-                        GetInRangeTiles();
+                        _activeCharacterIndex = countCharacter;
+                        if (characterPrefab.Length == countCharacter)
+                        {
+                            GetInRangeTiles();
+                        }
                     }
                     else
                     {
-                        isMoving = true;
+                        _activeCharacter.isMoving = true;
                         tile.gameObject.GetComponent<OverlayTile>().HideTile();
                     }
                 }
             }
 
-            if (path.Count > 0 && isMoving)
+            if (path.Count > 0 && _activeCharacter.isMoving)
             {
                 MoveAlongPath();
             }
@@ -89,10 +100,10 @@ namespace finished3
             var step = speed * Time.deltaTime;
 
             float zIndex = path[0].transform.position.z;
-            character.transform.position = Vector2.MoveTowards(character.transform.position, path[0].transform.position, step);
-            character.transform.position = new Vector3(character.transform.position.x, character.transform.position.y, zIndex);
+            _activeCharacter.transform.position = Vector2.MoveTowards(_activeCharacter.transform.position, path[0].transform.position, step);
+            _activeCharacter.transform.position = new Vector3(_activeCharacter.transform.position.x, _activeCharacter.transform.position.y, zIndex);
 
-            if (Vector2.Distance(character.transform.position, path[0].transform.position) < 0.00001f)
+            if (Vector2.Distance(_activeCharacter.transform.position, path[0].transform.position) < 0.001f)
             {
                 PositionCharacterOnLine(path[0]);
                 path.RemoveAt(0);
@@ -100,17 +111,35 @@ namespace finished3
 
             if (path.Count == 0)
             {
+                SwitchCharacter();
+                foreach (var item in rangeFinderTiles)
+                {
+                    MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);
+                }
                 GetInRangeTiles();
-                isMoving = false;
+                _activeCharacter.isMoving = false;
+
             }
 
         }
 
+        private void SwitchCharacter()
+        {
+            //Reset last character
+            _activeCharacter.isMoving = false;
+
+            //Swap
+            _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
+            _activeCharacter = _activeCharacterList[_activeCharacterIndex];
+
+            //Set up
+        }
+
         private void PositionCharacterOnLine(OverlayTile tile)
         {
-            character.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + 0.0001f, tile.transform.position.z);
-            character.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
-            character.standingOnTile = tile;
+            _activeCharacter.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + 0.0001f, tile.transform.position.z);
+            _activeCharacter.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
+            _activeCharacter.standingOnTile = tile;
         }
 
         private static RaycastHit2D? GetFocusedOnTile()
@@ -130,7 +159,7 @@ namespace finished3
 
         private void GetInRangeTiles()
         {
-            rangeFinderTiles = rangeFinder.GetTilesInRange(new Vector2Int(character.standingOnTile.gridLocation.x, character.standingOnTile.gridLocation.y), movementRange);
+            rangeFinderTiles = rangeFinder.GetTilesInRange(new Vector2Int(_activeCharacter.standingOnTile.gridLocation.x, _activeCharacter.standingOnTile.gridLocation.y), _activeCharacter.numberOfMovement);
 
             foreach (var item in rangeFinderTiles)
             {
