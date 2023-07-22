@@ -132,7 +132,7 @@ namespace finished3
             //Reset last character
             _activeCharacter.isMoving = false;
 
-            //Swap
+            //Swap            
             _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
             _activeCharacter = _activeCharacterList[_activeCharacterIndex];
             int moverange = _activeCharacter.numberOfMovement;
