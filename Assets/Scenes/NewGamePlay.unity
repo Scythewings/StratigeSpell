@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 219367066}
-  - component: {fileID: 219367065}
+  - component: {fileID: 219367067}
   m_Layer: 0
   m_Name: Cursor Controller
   m_TagString: Untagged
@@ -140,21 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &219367065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219367064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087e3709673f4444dacec691be6aa5ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  characterPrefab: {fileID: 4479649296058300879, guid: f5399b28b2680f2429cfe3f9ac0bd3a5, type: 3}
-  cursor: {fileID: 502557074}
 --- !u!4 &219367066
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +155,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &219367067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219367064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b378b776784c4114eb9ec528d4591bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursor: {fileID: 502557074}
+  speed: 4
+  characterPrefab:
+  - {fileID: 3887190530340927573, guid: 102530ea26a22184481be957932cd967, type: 3}
+  _activeCharacter: {fileID: 0}
+  _activeCharacterList: []
 --- !u!1 &502557074
 GameObject:
   m_ObjectHideFlags: 0
@@ -26067,10 +26070,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744088550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 443038875ff15ce4f96a438f064bb57c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ab13079363247e42a1f5dafb2a17d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overLayTilesPrefab: {fileID: 9048369608547646497, guid: 4ba996557672ff64c81a9d8e0c6b15c1, type: 3}
+  overlayPrefab: {fileID: 8236925022526955805, guid: 73590fb3461fae64cbaf3ebc4e72352b, type: 3}
   overlayContainer: {fileID: 1370969745}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
