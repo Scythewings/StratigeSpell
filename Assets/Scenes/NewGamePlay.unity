@@ -152,7 +152,8 @@ Transform:
   m_LocalPosition: {x: 4.4939194, y: 1.2553478, z: -0.0696081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 502557075}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &219367067
@@ -172,7 +173,6 @@ MonoBehaviour:
   characterPrefab:
   - {fileID: 3887190530340927573, guid: 102530ea26a22184481be957932cd967, type: 3}
   _activeCharacter: {fileID: 0}
-  _activeCharacterList: []
 --- !u!1 &502557074
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,12 +198,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502557074}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.4939194, y: 1.2553478, z: -0.0696081}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 219367066}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &502557076
 SpriteRenderer:
@@ -26082,4 +26082,3 @@ SceneRoots:
   - {fileID: 1716317170}
   - {fileID: 1744088552}
   - {fileID: 219367066}
-  - {fileID: 502557075}

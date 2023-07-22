@@ -9,7 +9,7 @@ namespace finished3
     public class MouseController : MonoBehaviour
     {
         public GameObject cursor;
-        public float speed;
+        [HideInInspector] public float speed = 4;
 
         //Character Setup
         public GameObject[] characterPrefab;
@@ -17,7 +17,7 @@ namespace finished3
 
         //Character Controller
         [SerializeField] private CharacterDetail _activeCharacter;
-        [SerializeField] private List<CharacterDetail> _activeCharacterList = new List<CharacterDetail>();
+        [HideInInspector] private List<CharacterDetail> _activeCharacterList = new List<CharacterDetail>();
         private int _activeCharacterIndex = 0;
 
 
