@@ -1,91 +1,170 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
+using System.Linq;
+using static finished3.ArrowTranslator;
+using static UnityEditor.Progress;
 
-public class MouseController : MonoBehaviour //work
+namespace finished3
 {
-    public float speed;
-    public GameObject characterPrefab;
-    public GameObject cursor;
-
-    private CharacterInfo _character;
-    private PathFinder _pathFinder;
-    private List<OverlayTiles> _path;
-    // Start is called before the first frame update
-    void Start()
+    public class MouseController : MonoBehaviour
     {
-        _pathFinder = new PathFinder();
-        _path = new List<OverlayTiles>();
-    }
+        public GameObject cursor;
+        public float speed;
 
-    // Update is called once per frame
-    void LateUpdate() //work
-    {
-        RaycastHit2D? focusTilesHits = GetFocusedOnTile();
+        //Character Setup
+        public GameObject[] characterPrefab;
+        private int countCharacter => _activeCharacterList.Count;
 
-        if (focusTilesHits.HasValue)
-        { 
-            OverlayTiles overlayTile = focusTilesHits.Value.collider.gameObject.GetComponent<OverlayTiles>();
-            cursor.transform.position = overlayTile.transform.position;
-            cursor.gameObject.GetComponent<SpriteRenderer>().sortingOrder = overlayTile.GetComponent<SpriteRenderer>().sortingOrder;
-            if (Input.GetButtonDown("Fire1"))
+        //Character Controller
+        [SerializeField] private CharacterDetail _activeCharacter;
+        [SerializeField] private List<CharacterDetail> _activeCharacterList = new List<CharacterDetail>();
+        private int _activeCharacterIndex = 0;
+
+
+        private PathFinder pathFinder;
+        private RangeFinder rangeFinder;
+        private ArrowTranslator arrowTranslator;
+        private List<OverlayTile> path;
+        private List<OverlayTile> rangeFinderTiles;
+
+        private void Start()
+        {
+            pathFinder = new PathFinder();
+            rangeFinder = new RangeFinder();
+            arrowTranslator = new ArrowTranslator();
+
+            path = new List<OverlayTile>();
+            rangeFinderTiles = new List<OverlayTile>();
+        }
+
+        void LateUpdate()
+        {
+            RaycastHit2D? hit = GetFocusedOnTile();
+
+            if (hit.HasValue)
             {
-                overlayTile.GetComponent<SpriteRenderer>().color = new Color(1,1,1,1);
+                OverlayTile tile = hit.Value.collider.gameObject.GetComponent<OverlayTile>();
+                cursor.transform.position = tile.transform.position;
+                cursor.gameObject.GetComponent<SpriteRenderer>().sortingOrder = tile.transform.GetComponent<SpriteRenderer>().sortingOrder;
 
-                if (_character == null)
+                if (rangeFinderTiles.Contains(tile) && !_activeCharacter.isMoving)
                 {
-                    _character = Instantiate(characterPrefab).GetComponent<CharacterInfo>();
-                    PositionCharacterOnLine(overlayTile);
-                    _character.activeTile = overlayTile;
-                } 
-                else
+                    path = pathFinder.FindPath(_activeCharacter.standingOnTile, tile, rangeFinderTiles);
+
+                    foreach (var item in rangeFinderTiles)
+                    {
+                        MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);
+                    }
+
+                    for (int i = 0; i < path.Count; i++)
+                    {
+                        var previousTile = i > 0 ? path[i - 1] : _activeCharacter.standingOnTile;
+                        var futureTile = i < path.Count - 1 ? path[i + 1] : null;
+
+                        var arrow = arrowTranslator.TranslateDirection(previousTile, path[i], futureTile);
+                        path[i].SetSprite(arrow);
+                    }
+                }
+
+                if (Input.GetMouseButtonDown(0))
                 {
-                 _path = _pathFinder.FindPath(_character.activeTile, overlayTile);
-                    overlayTile.gameObject.GetComponent<OverlayTiles>().HideTiles();
+                    tile.ShowTile();
+
+                    if (characterPrefab.Length != countCharacter)
+                    {
+                        _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
+                        _activeCharacterList.Add(_activeCharacter);
+                        PositionCharacterOnLine(tile);
+                        _activeCharacterIndex = countCharacter;
+                        if (characterPrefab.Length == countCharacter)
+                        {
+                            GetInRangeTiles();
+                        }
+                    }
+                    else
+                    {
+                        _activeCharacter.isMoving = true;
+                        tile.gameObject.GetComponent<OverlayTile>().HideTile();
+                    }
                 }
             }
+
+            if (path.Count > 0 && _activeCharacter.isMoving)
+            {
+                MoveAlongPath();
+            }
         }
-        if(_path.Count > 0)
+
+        private void MoveAlongPath()
         {
-            
-            MoveAlongPath();
-        }
-    }
+            var step = speed * Time.deltaTime;
 
-    private void MoveAlongPath() //work
-    {
-        var step = speed * Time.deltaTime;
-        var zIndex = _path[0].transform.position.z;
-        _character.transform.position = Vector2.MoveTowards(_character.transform.position, _path[0].transform.position, step);
-        _character.transform.position = new Vector3(_character.transform.position.x, _character.transform.position.y, zIndex);
-        if (Vector2.Distance(_character.transform.position, _path[0].transform.position) <0.00001f)
+            float zIndex = path[0].transform.position.z;
+            _activeCharacter.transform.position = Vector2.MoveTowards(_activeCharacter.transform.position, path[0].transform.position, step);
+            _activeCharacter.transform.position = new Vector3(_activeCharacter.transform.position.x, _activeCharacter.transform.position.y, zIndex);
+
+            if (Vector2.Distance(_activeCharacter.transform.position, path[0].transform.position) < 0.001f)
+            {
+                PositionCharacterOnLine(path[0]);
+                path.RemoveAt(0);
+            }
+
+            if (path.Count == 0)
+            {
+                SwitchCharacter();
+                foreach (var item in rangeFinderTiles)
+                {
+                    MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);
+                }
+                GetInRangeTiles();
+                _activeCharacter.isMoving = false;
+
+            }
+
+        }
+
+        private void SwitchCharacter()
         {
-            PositionCharacterOnLine(_path[0]);
-            _path.RemoveAt(0);
+            //Reset last character
+            _activeCharacter.isMoving = false;
+
+            //Swap
+            _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
+            _activeCharacter = _activeCharacterList[_activeCharacterIndex];
+
+            //Set up
         }
-    }
 
-    public RaycastHit2D? GetFocusedOnTile() //work
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
-        if (hits.Length > 0)
+        private void PositionCharacterOnLine(OverlayTile tile)
         {
-            return hits.OrderByDescending(i => i.collider.transform.position.z).First();
+            _activeCharacter.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y + 0.0001f, tile.transform.position.z);
+            _activeCharacter.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
+            _activeCharacter.standingOnTile = tile;
         }
-        return null;
-    }
 
-    private void PositionCharacterOnLine (OverlayTiles tile) //work
-    {
-        _character.transform.position = new Vector3(tile.transform.position.x , tile.transform.position.y+0.00001f, tile.transform.position.z);
-        _character.GetComponent<SpriteRenderer>().sortingOrder = tile.GetComponent<SpriteRenderer>().sortingOrder;
-        _character.activeTile = tile;
+        private static RaycastHit2D? GetFocusedOnTile()
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
+
+            if (hits.Length > 0)
+            {
+                return hits.OrderByDescending(i => i.collider.transform.position.z).First();
+            }
+
+            return null;
+        }
+
+        private void GetInRangeTiles()
+        {
+            rangeFinderTiles = rangeFinder.GetTilesInRange(new Vector2Int(_activeCharacter.standingOnTile.gridLocation.x, _activeCharacter.standingOnTile.gridLocation.y), _activeCharacter.numberOfMovement);
+
+            foreach (var item in rangeFinderTiles)
+            {
+                item.ShowTile();
+            }
+        }
     }
 }
