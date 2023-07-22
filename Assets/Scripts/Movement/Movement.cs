@@ -18,7 +18,6 @@ public class Movement : MonoBehaviour
     public PlayerInput input;
     public int action;
     public Animator anim;
-    public SpellControl shoot;
     [SerializeField] private CamController CameraScript;
 
     public bool walk;
@@ -29,8 +28,7 @@ public class Movement : MonoBehaviour
     {
         _movePoint.parent = null;
         basec = GetComponent<BaseChar>();
-        input = GetComponent<PlayerInput>();
-        shoot = GetComponent<SpellControl>();
+        input = GetComponent<PlayerInput>();      
         action = basec.ActionPoint;
         anim = GetComponentInChildren<Animator>();
         walk = false;
