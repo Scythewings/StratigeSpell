@@ -124,9 +124,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6101671216874772218}
-  - component: {fileID: 963955658142184414}
+  - component: {fileID: 1511315078001836655}
   m_Layer: 0
-  m_Name: blueTank
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ Transform:
   - {fileID: 2079863375667154270}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963955658142184414
+--- !u!114 &1511315078001836655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,9 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3323680884150086760}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8846ab10c364ac34797972ca1e7731e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c1676e2ff5cbd64783ba8523e090d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standingOnTile: {fileID: 0}
-  numberOfMovement: 3
-  isMoving: 0
+  activeTile: {fileID: 5526705255546763220, guid: 4ba996557672ff64c81a9d8e0c6b15c1, type: 3}
