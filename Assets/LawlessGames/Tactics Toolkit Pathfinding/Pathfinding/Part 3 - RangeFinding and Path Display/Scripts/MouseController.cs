@@ -77,6 +77,7 @@ namespace finished3
                         _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
                         _activeCharacterList.Add(_activeCharacter);
                         PositionCharacterOnLine(tile);
+                        _activeCharacter.standingOnTile.isBlocked = true;
                         _activeCharacterIndex = countCharacter;                        
                     }
                     else
@@ -87,7 +88,7 @@ namespace finished3
                 }
             }
 
-            if (Input.GetKeyDown("w"))
+            if (Input.GetKeyDown("e"))
             {
                 GetInRangeTiles(_activeCharacter.attackRange);
             }
@@ -101,6 +102,7 @@ namespace finished3
 
         private void MoveAlongPath()
         {
+            _activeCharacter.standingOnTile.isBlocked = false;
             var step = speed * Time.deltaTime;
 
             float zIndex = path[0].transform.position.z;
@@ -115,7 +117,9 @@ namespace finished3
 
             if (path.Count == 0)
             {
-                ClearArrowPath();                
+                ClearArrowPath();
+                _activeCharacter.standingOnTile.isBlocked = true;
+
             }
         }
 
@@ -123,7 +127,7 @@ namespace finished3
         {
             foreach (var item in rangeFinderTiles)
             {
-                MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);
+                MapManager.Instance.map[item.grid2DLocation].SetSprite(ArrowDirection.None);                
             }
         }
 
