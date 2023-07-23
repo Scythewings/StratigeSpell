@@ -56,7 +56,7 @@ public class CamController : MonoBehaviour
 
     void Update()
     {
-        if (input.openMap)
+        if (Input.GetKeyDown("m"))
         {
             if (!open)
             {

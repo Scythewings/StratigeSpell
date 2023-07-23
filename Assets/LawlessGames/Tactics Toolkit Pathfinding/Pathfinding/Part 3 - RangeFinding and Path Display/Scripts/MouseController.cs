@@ -134,6 +134,7 @@ namespace finished3
         private void SwitchCharacter()
         {
             //Reset last character
+            ClearArrowPath();
             _activeCharacter.isMoving = false;
 
             //Swap            
