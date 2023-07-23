@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6101671216874772218}
   - component: {fileID: 1511315078001836655}
+  - component: {fileID: -1115226669574584569}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -162,3 +163,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeTile: {fileID: 5526705255546763220, guid: 4ba996557672ff64c81a9d8e0c6b15c1, type: 3}
+--- !u!114 &-1115226669574584569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3323680884150086760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aedbb233c89da6a40aecdac4fc9d463f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons: {fileID: 0}
+  charactermode: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 60

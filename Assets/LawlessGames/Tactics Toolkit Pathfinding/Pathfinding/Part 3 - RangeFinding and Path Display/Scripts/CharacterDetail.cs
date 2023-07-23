@@ -8,5 +8,7 @@ namespace finished3
         public int numberOfMovement = 3;
         public int attackRange = 2;
         public bool isMoving = false;
+        public bool attackMode = false;
+
     }
 }
