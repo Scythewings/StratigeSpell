@@ -24,7 +24,7 @@ public class WeaponRotation : MonoBehaviour
 
         }
 
-        if (charactermode.attackMode)
+        if (charactermode.attackMode && charactermode.isMoving)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -38,6 +38,7 @@ public class WeaponRotation : MonoBehaviour
                 Vector2 direction = difference / distance;
                 direction.Normalize();
                 FireBullet(direction, ratationz);
+                charactermode.attackMode = false;
             }
         }
 
