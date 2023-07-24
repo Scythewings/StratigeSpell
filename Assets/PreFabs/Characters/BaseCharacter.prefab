@@ -122,6 +122,7 @@ MonoBehaviour:
   charactermode: {fileID: 7416735118516595048}
   bulletPrefab: {fileID: 3027269996480742495, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
   bulletSpeed: 10
+  buttleStartPos: {fileID: 3626354364718461874}
 --- !u!70 &2435610111310468402
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -202,6 +203,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2924733172761571103}
+  - {fileID: 698216310930057417}
   m_Father: {fileID: 7603954445427184131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7205086573043273779
@@ -256,6 +258,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3626354364718461874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 698216310930057417}
+  m_Layer: 0
+  m_Name: StartSpell
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &698216310930057417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626354364718461874}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.02, y: -0.07, z: 0.008069082}
+  m_LocalScale: {x: 6.98812, y: 8.032128, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 471318434152451052}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8161661298650687567
 GameObject:
   m_ObjectHideFlags: 0

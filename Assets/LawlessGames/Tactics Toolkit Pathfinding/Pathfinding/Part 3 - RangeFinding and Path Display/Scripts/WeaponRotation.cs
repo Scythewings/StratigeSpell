@@ -10,6 +10,8 @@ public class WeaponRotation : MonoBehaviour
     public CharacterDetail charactermode;
     public GameObject bulletPrefab;
     public float bulletSpeed = 60f;
+    public GameObject buttleStartPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,7 @@ public class WeaponRotation : MonoBehaviour
     void FireBullet(Vector2 direction, float ratationZ)
     {
         GameObject b = Instantiate(bulletPrefab) as GameObject;
-        b.transform.position = weapons.transform.position;
+        b.transform.position = buttleStartPos.transform.position;
         b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, ratationZ);
         b.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
     }
