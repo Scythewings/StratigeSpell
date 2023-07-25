@@ -8,7 +8,7 @@ public class Freezebullet : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.E))
         {
-             
+             if () // if the bullet hit the character swap character
         }
     }
 }
