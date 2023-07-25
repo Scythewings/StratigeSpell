@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 924869305811461510, guid: 37042ebc838b00845ae046a8b363f662, type: 3}
+      objectReference: {fileID: 6400789247382297947, guid: 0f1edc40adf315a43a7f25342a8e315e, type: 3}
     - target: {fileID: 5083995488593976009, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: m_Sprite
       value: 

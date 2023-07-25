@@ -10,6 +10,7 @@ namespace finished3
         public int attackRange = 2;
         public bool isMoving = false;
         public bool attackMode = false;
+        public bool isFreeze = false;
   
         private void Start()
         {

@@ -6,13 +6,22 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
     [SerializeField] int bulletDamage = 1;
+    [SerializeField] bool Skill = false;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Physics2D.IgnoreLayerCollision(0, 7);
 
         if (collision.gameObject.TryGetComponent<CharacterDetail>(out CharacterDetail enemyComponent))
         {
-            enemyComponent.takeDamage(bulletDamage);
+            if (Skill)
+            {
+                Debug.Log("checkpoint");
+                enemyComponent.isFreeze = true;
+            }
+            else
+            {
+                enemyComponent.takeDamage(bulletDamage);
+            }
         }
         Destroy(gameObject);
     }
