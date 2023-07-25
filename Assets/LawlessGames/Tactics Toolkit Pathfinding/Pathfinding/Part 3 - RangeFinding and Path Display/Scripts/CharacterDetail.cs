@@ -11,7 +11,8 @@ namespace finished3
         public bool isMoving = false;
         public bool attackMode = false;
         public bool isFreeze = false;
-  
+        public bool isDead = false;
+
         private void Start()
         {
             health = maxHealth;
@@ -21,6 +22,7 @@ namespace finished3
             health -= damageAmount;
             if (health <= 0)
             {
+                gameObject.GetComponent<CharacterDetail>().isDead = true;
                 Destroy(gameObject);
             }
         }
