@@ -43,7 +43,7 @@ namespace finished3
 
             if (Input.GetButtonDown("Jump"))
             {
-                SwitchCharacter();
+                SwitchCharacter();               
             }
 
             if (hit.HasValue)
@@ -52,7 +52,7 @@ namespace finished3
                 cursor.transform.position = tile.transform.position;
                 cursor.gameObject.GetComponent<SpriteRenderer>().sortingOrder = tile.transform.GetComponent<SpriteRenderer>().sortingOrder;
 
-                if (rangeFinderTiles.Contains(tile) && !_activeCharacter.isMoving)
+                if (rangeFinderTiles.Contains(tile) && !_activeCharacter.isMoving && !_activeCharacter.isFreeze)
                 {
                     path = pathFinder.FindPath(_activeCharacter.standingOnTile, tile, rangeFinderTiles);
 
@@ -136,6 +136,7 @@ namespace finished3
             //Reset last character
             ClearArrowPath();
             _activeCharacter.isMoving = false;
+            _activeCharacter.isFreeze = false;
 
             //Swap            
             _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
@@ -143,6 +144,10 @@ namespace finished3
             int moverange = _activeCharacter.numberOfMovement;
 
             //Set up
+            if (_activeCharacter.isDead)
+            {
+                SwitchCharacter();
+            }
             GetInRangeTiles(moverange);
         }
 
