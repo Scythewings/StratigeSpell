@@ -171,8 +171,12 @@ MonoBehaviour:
   cursor: {fileID: 502557074}
   speed: 4
   characterPrefab:
-  - {fileID: 6536592722206044497, guid: c38ba314e38189f47ad69bd9484cf4bd, type: 3}
-  - {fileID: 7064532940440769058, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+  - {fileID: 4163674275945028955, guid: c6d13d133766cbf49ab7fcff8940e6c5, type: 3}
+  - {fileID: 9100741919131406227, guid: 6d2281dda0c262847b9d8fb404e277e6, type: 3}
+  - {fileID: 1614061137580432381, guid: 3f3d06678913b074bb73e40065686359, type: 3}
+  - {fileID: 6814684758037133399, guid: e1db022faa9703244a5534f4bae893c8, type: 3}
+  - {fileID: 3588979173527554839, guid: 357f93ca57d91014ab8fd01f0203d9c1, type: 3}
+  - {fileID: 3137259732176950476, guid: 13234ddae4a584f4ba60e8e83ba7399e, type: 3}
   _activeCharacter: {fileID: 0}
 --- !u!1 &502557074
 GameObject:
