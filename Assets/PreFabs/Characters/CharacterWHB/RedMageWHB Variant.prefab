@@ -48,6 +48,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 924869305811461510, guid: 37042ebc838b00845ae046a8b363f662, type: 3}
+    - target: {fileID: 5083995488593976009, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 04f9370778634444dafcffd40bbf3353, type: 3}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9848078
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.17364825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5286219942325272800, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 7064532940440769058, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: m_Name
       value: RedMageWHB Variant
