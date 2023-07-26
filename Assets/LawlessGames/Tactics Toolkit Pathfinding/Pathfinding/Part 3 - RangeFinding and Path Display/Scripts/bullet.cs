@@ -15,7 +15,6 @@ public class bullet : MonoBehaviour
         {
             if (Skill)
             {
-                Debug.Log("checkpoint");
                 enemyComponent.isFreeze = true;
             }
             else

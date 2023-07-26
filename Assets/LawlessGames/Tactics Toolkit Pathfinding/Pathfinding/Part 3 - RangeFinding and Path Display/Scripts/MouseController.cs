@@ -41,7 +41,7 @@ namespace finished3
         {
             RaycastHit2D? hit = GetFocusedOnTile();          
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetKeyDown("q"))
             {
                 SwitchCharacter();               
             }
@@ -86,12 +86,7 @@ namespace finished3
                         tile.gameObject.GetComponent<OverlayTile>().HideTile();
                     }
                 }
-            }
-
-            if (Input.GetKeyDown("e"))
-            {
-                GetInRangeTiles(_activeCharacter.attackRange);
-            }
+            }            
 
             if (path.Count > 0 && _activeCharacter.isMoving)
             {

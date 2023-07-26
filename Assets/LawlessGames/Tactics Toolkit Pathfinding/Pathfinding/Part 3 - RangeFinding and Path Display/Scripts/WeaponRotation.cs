@@ -20,7 +20,7 @@ public class WeaponRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("a"))
+        if (Input.GetKeyDown("w"))
         {
             charactermode.attackMode = !charactermode.attackMode;
 
@@ -34,7 +34,7 @@ public class WeaponRotation : MonoBehaviour
             Vector3 difference = mousePos - weapons.transform.position;
             float ratationz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
             weapons.GetComponentInChildren<SpriteRenderer>().transform.rotation = Quaternion.Euler(0.0f, 0.0f, ratationz);
-            if (Input.GetKeyDown("s"))
+            if (Input.GetKeyDown("e"))
             {
                 float distance = difference.magnitude;
                 Vector2 direction = difference / distance;
