@@ -78,7 +78,15 @@ namespace finished3
                         _activeCharacterList.Add(_activeCharacter);
                         PositionCharacterOnLine(tile);
                         _activeCharacter.standingOnTile.isBlocked = true;
-                        _activeCharacterIndex = countCharacter;                        
+                        _activeCharacterIndex = countCharacter;       
+                        if (countCharacter % 2 == 0)
+                        {
+                            _activeCharacter.team = "Red";
+                        }
+                        else
+                        {
+                            _activeCharacter.team = "Blue";
+                        }
                     }
                     else
                     {

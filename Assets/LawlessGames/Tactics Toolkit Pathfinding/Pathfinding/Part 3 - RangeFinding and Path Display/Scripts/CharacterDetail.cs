@@ -13,6 +13,7 @@ namespace finished3
         public bool isFreeze = false;
         public bool isDead = false;
         public bool isProtected = false;
+        public string team;
 
         private void Start()
         {
