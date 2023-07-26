@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1453614339063215550
+--- !u!1001 &5738451700934344293
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,21 +8,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 611071581946076522, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
+      propertyPath: m_Radius
+      value: 0.78125
+      objectReference: {fileID: 0}
+    - target: {fileID: 611071581946076522, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 611071581946076522, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1048716530252037812, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048716530252037812, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1048716530252037812, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.16600122
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 1048716530252037812, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5794753
+      value: 1.68
       objectReference: {fileID: 0}
     - target: {fileID: 1048716530252037812, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58,16 +70,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3027269996480742495, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_Name
-      value: Axeslash Variant
+      value: FreezeSpell Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3058331308963758723, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
-      propertyPath: bulletDamage
-      value: 2
+      propertyPath: Skill
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5136264577661145840, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c01adf1a93486fb49aedb12c5605eeac, type: 3}
+      objectReference: {fileID: 21300000, guid: 7a6eeee1060218948af2a0e445b62775, type: 3}
     m_RemovedComponents:
     - {fileID: 611071581946076522, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
     m_RemovedGameObjects: []
@@ -75,20 +87,20 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3027269996480742495, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -3296387528579568550}
+      addedObject: {fileID: 5118762806706696213}
   m_SourcePrefab: {fileID: 100100000, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
---- !u!1 &4480871141395149281 stripped
+--- !u!1 &7322876559810083386 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3027269996480742495, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
-  m_PrefabInstance: {fileID: 1453614339063215550}
+  m_PrefabInstance: {fileID: 5738451700934344293}
   m_PrefabAsset: {fileID: 0}
---- !u!58 &-3296387528579568550
-CircleCollider2D:
+--- !u!70 &5118762806706696213
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4480871141395149281}
+  m_GameObject: {fileID: 7322876559810083386}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -114,6 +126,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08
+  m_Offset: {x: -0.000000011719422, y: -0.09830965}
+  m_Size: {x: 1.5625005, y: 0.7479395}
+  m_Direction: 1
