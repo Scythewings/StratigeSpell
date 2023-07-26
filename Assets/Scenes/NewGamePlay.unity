@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b378b776784c4114eb9ec528d4591bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkTeam: {fileID: 1373664191}
   cursor: {fileID: 502557074}
   speed: 4
   characterPrefab:
@@ -26159,6 +26160,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1744088552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1373664190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373664192}
+  - component: {fileID: 1373664191}
+  m_Layer: 0
+  m_Name: CheckTeam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1373664191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373664190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 461e4f967f31d1746bd2c45770de24f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  redAlive: 0
+  blueAlive: 0
+--- !u!4 &1373664192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373664190}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.181355, y: 0.47361225, z: 0.129882}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1446268004
 GameObject:
   m_ObjectHideFlags: 3
@@ -26511,3 +26558,4 @@ SceneRoots:
   - {fileID: 1108224622}
   - {fileID: 1887650366}
   - {fileID: 1102754462}
+  - {fileID: 1373664192}

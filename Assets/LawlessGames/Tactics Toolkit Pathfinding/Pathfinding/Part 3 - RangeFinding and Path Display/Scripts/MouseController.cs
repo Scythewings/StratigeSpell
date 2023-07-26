@@ -9,6 +9,8 @@ namespace finished3
 {
     public class MouseController : MonoBehaviour
     {
+        [SerializeField] private CheckTeam checkTeam;
+
         public GameObject cursor;
         [HideInInspector] public float speed = 4;
 
@@ -78,14 +80,17 @@ namespace finished3
                         _activeCharacterList.Add(_activeCharacter);
                         PositionCharacterOnLine(tile);
                         _activeCharacter.standingOnTile.isBlocked = true;
-                        _activeCharacterIndex = countCharacter;       
+                        _activeCharacterIndex = countCharacter;   
+                        
                         if (countCharacter % 2 == 0)
                         {
                             _activeCharacter.team = "Red";
+                            checkTeam.redAlive++;
                         }
                         else
                         {
                             _activeCharacter.team = "Blue";
+                            checkTeam.blueAlive++;
                         }
                     }
                     else
@@ -151,6 +156,14 @@ namespace finished3
             //Set up
             if (_activeCharacter.isDead)
             {
+                if (_activeCharacter.team == "Red")
+                {
+                    checkTeam.redAlive--;
+                }
+                else if (_activeCharacter.team == "Blue")
+                {
+                    checkTeam.blueAlive--;
+                }
                 SwitchCharacter();
             }
             GetInRangeTiles(moverange);

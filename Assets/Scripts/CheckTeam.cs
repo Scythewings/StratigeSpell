@@ -10,13 +10,7 @@ public class CheckTeam : MonoBehaviour
 
     void Start()
     {
-        foreach (GameObject v in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
-        {
-            if (v.TryGetComponent<CharacterDetail>(out CharacterDetail))
-            {
-
-            }
-        }
+        
     }
 
     void Update()
