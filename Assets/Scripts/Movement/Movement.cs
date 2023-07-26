@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour
     //animation part
     public Animator anim;
     public bool walk;
-    public
+    
 
     
 
@@ -118,7 +118,7 @@ public class Movement : MonoBehaviour
             case CharacterAnim.Atk:
                 break;
             case CharacterAnim.Dead:
-                anim.SetTrigger("Dead")
+                anim.SetTrigger("Dead");
                 break;
         }
 
