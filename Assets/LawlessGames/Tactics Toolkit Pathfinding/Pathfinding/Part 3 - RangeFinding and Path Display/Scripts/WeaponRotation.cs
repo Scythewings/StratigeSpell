@@ -8,7 +8,7 @@ public class WeaponRotation : MonoBehaviour
 {
     [SerializeField] GameObject weapons;
     public CharacterDetail charactermode;
-    public GameObject bulletPrefab;
+    public List<GameObject> bulletPrefab = new List<GameObject>();
     public float bulletSpeed = 60f;
     public GameObject buttleStartPos;
 
@@ -39,16 +39,25 @@ public class WeaponRotation : MonoBehaviour
                 float distance = difference.magnitude;
                 Vector2 direction = difference / distance;
                 direction.Normalize();
-                FireBullet(direction, ratationz);
+                FireBullet(direction, ratationz, bulletPrefab[0]);
                 charactermode.attackMode = false;
             }
+            if (Input.GetKeyDown("r"))
+            {
+                float distance = difference.magnitude;
+                Vector2 direction = difference / distance;
+                direction.Normalize();
+                FireBullet(direction, ratationz, bulletPrefab[1]);
+                charactermode.attackMode = false;
+            }
+
         }
 
     }
 
-    void FireBullet(Vector2 direction, float ratationZ)
+    void FireBullet(Vector2 direction, float ratationZ,GameObject bullet)
     {
-        GameObject b = Instantiate(bulletPrefab) as GameObject;
+        GameObject b = Instantiate(bullet) as GameObject;
         b.transform.position = buttleStartPos.transform.position;
         b.transform.rotation = Quaternion.Euler(0.0f, 0.0f, ratationZ);
         b.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;

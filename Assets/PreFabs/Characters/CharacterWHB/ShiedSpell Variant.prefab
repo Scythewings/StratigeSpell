@@ -73,6 +73,10 @@ PrefabInstance:
       value: ShiedSpell Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3058331308963758723, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
+      propertyPath: isProtected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3058331308963758723, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: bulletDamage
       value: 0
       objectReference: {fileID: 0}

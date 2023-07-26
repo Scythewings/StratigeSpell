@@ -76,6 +76,10 @@ PrefabInstance:
       propertyPath: Skill
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3058331308963758723, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
+      propertyPath: freezeSkill
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5136264577661145840, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -126,6 +130,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000011719422, y: -0.09830965}
-  m_Size: {x: 1.5625005, y: 0.7479395}
+  m_Offset: {x: 0.19810309, y: -0.09830967}
+  m_Size: {x: 1.1663007, y: 0.7479442}
   m_Direction: 1

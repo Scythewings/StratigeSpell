@@ -12,6 +12,7 @@ namespace finished3
         public bool attackMode = false;
         public bool isFreeze = false;
         public bool isDead = false;
+        public bool isProtected = false;
 
         private void Start()
         {

@@ -132,6 +132,8 @@ namespace finished3
             ClearArrowPath();
             _activeCharacter.isMoving = false;
             _activeCharacter.isFreeze = false;
+            _activeCharacter.isProtected = false;
+
 
             //Swap            
             _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
@@ -144,6 +146,7 @@ namespace finished3
                 SwitchCharacter();
             }
             GetInRangeTiles(moverange);
+            _activeCharacter.attackMode = false;
         }
 
         private void PositionCharacterOnLine(OverlayTile tile)
