@@ -4222,8 +4222,8 @@ MonoBehaviour:
   basec: {fileID: 1608663310}
   input: {fileID: 0}
   action: 0
-  anim: {fileID: 0}
   CameraScript: {fileID: 1436570165}
+  anim: {fileID: 0}
   walk: 0
 --- !u!4 &1608663309
 Transform:

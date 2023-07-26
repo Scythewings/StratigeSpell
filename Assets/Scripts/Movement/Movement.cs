@@ -17,10 +17,13 @@ public class Movement : MonoBehaviour
     public BaseChar basec;
     public PlayerInput input;
     public int action;
-    public Animator anim;
     [SerializeField] private CamController CameraScript;
 
+    //animation part
+    public Animator anim;
     public bool walk;
+    public
+
     
 
     // Start is called before the first frame update
@@ -107,11 +110,15 @@ public class Movement : MonoBehaviour
             //break is for ending case
         {
             case CharacterAnim.Idle:
+                
                 break;
             case CharacterAnim.Walk:
                 anim.SetTrigger("Walk");
                 break;
             case CharacterAnim.Atk:
+                break;
+            case CharacterAnim.Dead:
+                anim.SetTrigger("Dead")
                 break;
         }
 
@@ -123,4 +130,5 @@ public enum CharacterAnim
     Idle,
     Walk,
     Atk,
+    Dead,
 }
