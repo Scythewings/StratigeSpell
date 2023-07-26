@@ -576,7 +576,7 @@ MonoBehaviour:
   cameras: []
   DefaultCam: {fileID: 1387139542}
   FollowChar: {fileID: 2075810670}
-  currentCamera: {fileID: 0}
+  input: {fileID: 0}
 --- !u!4 &1436570166
 Transform:
   m_ObjectHideFlags: 0
@@ -4191,6 +4191,7 @@ GameObject:
   - component: {fileID: 1608663309}
   - component: {fileID: 1608663308}
   - component: {fileID: 1608663310}
+  - component: {fileID: 1608663311}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4215,9 +4216,15 @@ MonoBehaviour:
   _border:
     serializedVersion: 2
     m_Bits: 64
+  rb: {fileID: 0}
+  facingRight: 1
+  movementSmoothing: 0.05
   basec: {fileID: 1608663310}
+  input: {fileID: 0}
   action: 0
+  anim: {fileID: 0}
   CameraScript: {fileID: 1436570165}
+  walk: 0
 --- !u!4 &1608663309
 Transform:
   m_ObjectHideFlags: 0
@@ -4250,6 +4257,25 @@ MonoBehaviour:
   _Health: 0
   _Damage: 0
   _Action: 10
+--- !u!114 &1608663311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608663307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f9a2ef5150d464cbf3c66cbbf7325c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveUp: 0
+  moveDown: 0
+  moveLeft: 0
+  moveRight: 0
+  openMap: 0
+  attack: 0
+  skills: 0
 --- !u!1 &1609489016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4352,7 +4378,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1651874955
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1972312226, guid: 3889882fbec2b6647afc0f8da7a5083b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
