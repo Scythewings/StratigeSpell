@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 597989273128664572, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,6 +56,18 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 4480871141395149281, guid: 87d47516550a2454592b644260142019, type: 3}
+    - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: bulletPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: bulletPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 4480871141395149281, guid: 87d47516550a2454592b644260142019, type: 3}
+    - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: bulletPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 321267860144340111, guid: a88fa6a8e9835064b855a18b0361760b, type: 3}
     - target: {fileID: 3508386619956640262, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: m_Sprite
       value: 

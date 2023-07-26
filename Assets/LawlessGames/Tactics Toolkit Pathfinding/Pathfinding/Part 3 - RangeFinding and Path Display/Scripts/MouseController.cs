@@ -41,7 +41,7 @@ namespace finished3
         {
             RaycastHit2D? hit = GetFocusedOnTile();          
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetKeyDown("q"))
             {
                 SwitchCharacter();               
             }
@@ -86,12 +86,7 @@ namespace finished3
                         tile.gameObject.GetComponent<OverlayTile>().HideTile();
                     }
                 }
-            }
-
-            if (Input.GetKeyDown("e"))
-            {
-                GetInRangeTiles(_activeCharacter.attackRange);
-            }
+            }            
 
             if (path.Count > 0 && _activeCharacter.isMoving)
             {
@@ -137,6 +132,8 @@ namespace finished3
             ClearArrowPath();
             _activeCharacter.isMoving = false;
             _activeCharacter.isFreeze = false;
+            _activeCharacter.isProtected = false;
+
 
             //Swap            
             _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
@@ -149,6 +146,7 @@ namespace finished3
                 SwitchCharacter();
             }
             GetInRangeTiles(moverange);
+            _activeCharacter.attackMode = false;
         }
 
         private void PositionCharacterOnLine(OverlayTile tile)

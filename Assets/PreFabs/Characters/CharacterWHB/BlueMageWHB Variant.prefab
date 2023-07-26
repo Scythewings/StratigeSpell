@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: maxHealth
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: numberOfMovement
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 597989273128664572, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,6 +60,18 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 924869305811461510, guid: 37042ebc838b00845ae046a8b363f662, type: 3}
+    - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: bulletPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: bulletPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 924869305811461510, guid: 37042ebc838b00845ae046a8b363f662, type: 3}
+    - target: {fileID: 3193464202450875526, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: bulletPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 7322876559810083386, guid: 6c360d532d4591d40b598c34708b61fe, type: 3}
     - target: {fileID: 3508386619956640262, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: m_Sprite
       value: 

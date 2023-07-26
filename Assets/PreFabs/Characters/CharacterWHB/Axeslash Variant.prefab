@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axeslash Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3058331308963758723, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
+      propertyPath: bulletDamage
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5136264577661145840, guid: cc206dfbc7f848e468f0d9ee65117634, type: 3}
       propertyPath: m_Sprite
       value: 
