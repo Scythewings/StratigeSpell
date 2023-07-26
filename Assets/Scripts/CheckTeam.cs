@@ -15,6 +15,13 @@ public class CheckTeam : MonoBehaviour
 
     void Update()
     {
-        
+        if (redAlive == 0)
+        {
+            //end blue win
+        }
+        else if (blueAlive == 0)
+        {
+            //end red win
+        }
     }
 }

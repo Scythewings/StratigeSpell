@@ -41,7 +41,24 @@ namespace finished3
 
         void LateUpdate()
         {
-            RaycastHit2D? hit = GetFocusedOnTile();          
+            RaycastHit2D? hit = GetFocusedOnTile();
+
+
+            foreach (CharacterDetail character in _activeCharacterList)
+            {
+                if (character.isDead)
+                {
+                    if (character.team == "Red")
+                    {
+                        checkTeam.redAlive--;
+                    }
+                    else if (character.team == "Blue")
+                    {
+                        checkTeam.blueAlive--;
+                    }
+                    _activeCharacterList.Remove(character);
+                }
+            }
 
             if (Input.GetKeyDown("q"))
             {
@@ -156,14 +173,6 @@ namespace finished3
             //Set up
             if (_activeCharacter.isDead)
             {
-                if (_activeCharacter.team == "Red")
-                {
-                    checkTeam.redAlive--;
-                }
-                else if (_activeCharacter.team == "Blue")
-                {
-                    checkTeam.blueAlive--;
-                }
                 SwitchCharacter();
             }
             GetInRangeTiles(moverange);
