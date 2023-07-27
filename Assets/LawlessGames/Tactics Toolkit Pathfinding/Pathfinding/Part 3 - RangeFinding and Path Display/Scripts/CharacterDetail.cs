@@ -14,6 +14,7 @@ namespace finished3
         [HideInInspector] public bool isDead = false;
         [HideInInspector] public bool isProtected = false;
         public string team;
+        public int protectedTime = 2;
         public int skillsCoolDown = 3;
         public int skillscountDown = 0;
 
