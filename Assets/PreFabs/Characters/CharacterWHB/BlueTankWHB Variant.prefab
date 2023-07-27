@@ -9,12 +9,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: isFreeze
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: maxHealth
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
+      propertyPath: skillsCoolDown
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 515478676330759831, guid: 85eaabc2856d3bc48b18dc621f4416f3, type: 3}
       propertyPath: numberOfMovement

@@ -60,6 +60,7 @@ namespace finished3
                 }
             }
 
+
             if (Input.GetKeyDown("q"))
             {
                 SwitchCharacter();               
@@ -97,8 +98,8 @@ namespace finished3
                         _activeCharacterList.Add(_activeCharacter);
                         PositionCharacterOnLine(tile);
                         _activeCharacter.standingOnTile.isBlocked = true;
-                        _activeCharacterIndex = countCharacter;   
-                        
+                        _activeCharacterIndex = countCharacter;
+
                         if (countCharacter % 2 == 0)
                         {
                             _activeCharacter.team = "Red";
@@ -165,6 +166,7 @@ namespace finished3
             _activeCharacter.isProtected = false;
 
 
+
             //Swap            
             _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
             _activeCharacter = _activeCharacterList[_activeCharacterIndex];
@@ -177,6 +179,10 @@ namespace finished3
             }
             GetInRangeTiles(moverange);
             _activeCharacter.attackMode = false;
+            if (_activeCharacter.skillscountDown > 0)
+            {
+                _activeCharacter.skillscountDown--;
+            }
         }
 
         private void PositionCharacterOnLine(OverlayTile tile)

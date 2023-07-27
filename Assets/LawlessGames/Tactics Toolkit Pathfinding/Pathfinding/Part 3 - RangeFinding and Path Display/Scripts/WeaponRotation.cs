@@ -23,7 +23,6 @@ public class WeaponRotation : MonoBehaviour
         if (Input.GetKeyDown("w"))
         {
             charactermode.attackMode = !charactermode.attackMode;
-
         }
 
         if (charactermode.attackMode && charactermode.isMoving)
@@ -41,14 +40,15 @@ public class WeaponRotation : MonoBehaviour
                 direction.Normalize();
                 FireBullet(direction, ratationz, bulletPrefab[0]);
                 charactermode.attackMode = false;
-            }
-            if (Input.GetKeyDown("r"))
+            }           
+            if (Input.GetKeyDown("r") && charactermode.skillscountDown == 0)
             {
                 float distance = difference.magnitude;
                 Vector2 direction = difference / distance;
                 direction.Normalize();
                 FireBullet(direction, ratationz, bulletPrefab[1]);
                 charactermode.attackMode = false;
+                charactermode.skillscountDown = charactermode.skillsCoolDown;
             }
 
         }

@@ -8,12 +8,14 @@ namespace finished3
         public OverlayTile standingOnTile;
         public int numberOfMovement = 3;
         public int attackRange = 2;
-        public bool isMoving = false;
+        [HideInInspector] public bool isMoving = false;
         public bool attackMode = false;
-        public bool isFreeze = false;
-        public bool isDead = false;
-        public bool isProtected = false;
+        [HideInInspector] public bool isFreeze = false;
+        [HideInInspector] public bool isDead = false;
+        [HideInInspector] public bool isProtected = false;
         public string team;
+        public int skillsCoolDown = 3;
+        public int skillscountDown = 0;
 
         private void Start()
         {
