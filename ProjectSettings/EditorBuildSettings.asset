@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End_RedWin.unity
     guid: 2797f5e9499739e45a5ce76a63ae5b0e
+  - enabled: 1
+    path: Assets/Scenes/End_BlueWin.unity
+    guid: 9f3d2de838ceff340a51f0885b6d44f4
   m_configObjects: {}

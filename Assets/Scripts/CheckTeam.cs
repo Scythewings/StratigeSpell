@@ -21,7 +21,8 @@ public class CheckTeam : MonoBehaviour
         {
             SceneManager.LoadScene("End_BlueWin");
         }
-        else if (blueAlive == 0 && justStartGame)
+        
+        if (blueAlive == 0 && justStartGame)
         {
             SceneManager.LoadScene("End_RedWin");
         }
