@@ -46,10 +46,8 @@ namespace finished3
             animController = new AnimationController(); 
         }
 
-        void LateUpdate()
+        private void FixedUpdate()
         {
-            RaycastHit2D? hit = GetFocusedOnTile();
-
             foreach (CharacterDetail character in _activeCharacterList)
             {
                 if (character.isDead)
@@ -68,6 +66,11 @@ namespace finished3
                     _activeCharacterList.Remove(character);
                 }
             }
+        }
+
+        void LateUpdate()
+        {
+            RaycastHit2D? hit = GetFocusedOnTile();
 
             if (!pauseGame)
             {

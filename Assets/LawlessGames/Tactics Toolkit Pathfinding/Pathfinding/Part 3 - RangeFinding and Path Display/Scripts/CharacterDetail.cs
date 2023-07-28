@@ -33,6 +33,7 @@ namespace finished3
             {
                 gameObject.GetComponent<CharacterDetail>().isDead = true;
                 gameObject.layer = 0;
+                Destroy(gameObject,2f);
             }
         }
     }
