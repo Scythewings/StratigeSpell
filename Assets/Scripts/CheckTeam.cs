@@ -8,6 +8,7 @@ public class CheckTeam : MonoBehaviour
 {
     public int redAlive;
     public int blueAlive;
+    public bool justStartGame;
 
     void Start()
     {
@@ -16,11 +17,11 @@ public class CheckTeam : MonoBehaviour
 
     void Update()
     {
-        if (redAlive == 0)
+        if (redAlive == 0 && justStartGame)
         {
             SceneManager.LoadScene("MainMenu");
         }
-        else if (blueAlive == 0)
+        else if (blueAlive == 0 && justStartGame)
         {
             SceneManager.LoadScene("MainMenu");
         }
