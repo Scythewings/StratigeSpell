@@ -19,11 +19,11 @@ public class CheckTeam : MonoBehaviour
     {
         if (redAlive == 0 && justStartGame)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("End_BlueWin");
         }
         else if (blueAlive == 0 && justStartGame)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("End_RedWin");
         }
     }
 }
