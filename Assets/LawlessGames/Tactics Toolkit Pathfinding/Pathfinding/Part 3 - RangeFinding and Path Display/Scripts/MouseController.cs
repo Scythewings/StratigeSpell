@@ -25,6 +25,7 @@ namespace finished3
 
         private PathFinder pathFinder;
         private RangeFinder rangeFinder;
+        private AnimationController animController;
         private ArrowTranslator arrowTranslator;
         private List<OverlayTile> path;
         private List<OverlayTile> rangeFinderTiles;
@@ -39,6 +40,7 @@ namespace finished3
 
             path = new List<OverlayTile>();
             rangeFinderTiles = new List<OverlayTile>();
+            animController = new AnimationController(); 
         }
 
         void LateUpdate()
@@ -147,7 +149,7 @@ namespace finished3
             if (Vector2.Distance(_activeCharacter.transform.position, path[0].transform.position) < 0.001f)
             {
                 _activeCharacter.GetComponent<Animator>();
-                AnimPlay(CharacterAnim.Walk);
+                animController.AnimPlay(AnimationController.CharacterAnim.Walk);
                 PositionCharacterOnLine(path[0]);
                 path.RemoveAt(0);
             }

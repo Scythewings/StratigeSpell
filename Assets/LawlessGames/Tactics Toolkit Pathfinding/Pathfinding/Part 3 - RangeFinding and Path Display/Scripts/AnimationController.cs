@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animator : MonoBehaviour
+public class AnimationController
 {
     public Animator anim;
-    private void Start()
-    {
-        anim = GetComponent<Animator>(); 
-    }
+
     public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
     {
         switch (_animType)
@@ -21,12 +18,12 @@ public class Animator : MonoBehaviour
                 anim.SetTrigger("Walk");
                 break;
             case CharacterAnim.Atk:
+
                 break;
             case CharacterAnim.Dead:
                 anim.SetTrigger("Dead");
                 break;
         }
-
     }
 
     public enum CharacterAnim
@@ -36,4 +33,5 @@ public class Animator : MonoBehaviour
         Atk,
         Dead,
     }
+
 }

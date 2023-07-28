@@ -39,12 +39,12 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    /*void Update()
+    void Update()
     {
-        
+
         if (action > -1)
         {
-            
+
             transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, _movePoint.position) == 0f)
@@ -57,24 +57,24 @@ public class Movement : MonoBehaviour
                 else if (input.moveLeft)
                 {
                     AnimPlay(CharacterAnim.Walk);
-                    MoveDirection(-2f, 0); 
+                    MoveDirection(-2f, 0);
                 }
                 else if (input.moveUp)
                 {
                     AnimPlay(CharacterAnim.Walk);
-                    MoveDirection( 0, 2f);
+                    MoveDirection(0, 2f);
                 }
                 else if (input.moveDown)
                 {
                     AnimPlay(CharacterAnim.Walk);
-                    MoveDirection( 0, -2f);
+                    MoveDirection(0, -2f);
                 }
-              
+
             }
         }
-        
+
     }
-    */
+
 
     public void MoveDirection(float xDirection, float yDirection)
     {
@@ -103,37 +103,37 @@ public class Movement : MonoBehaviour
         charScale.x *= -1;
         transform.localScale = charScale;
     }
-}
 
-    
-    
+
+
+
 
     //Trigger play once then stop.
-/*public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
-{
-    switch (_animType)
-        //break is for ending case
+    public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
     {
-        case CharacterAnim.Idle:
+        switch (_animType)
+        //break is for ending case
+        {
+            case CharacterAnim.Idle:
 
-            break;
-        case CharacterAnim.Walk:
-            anim.SetTrigger("Walk");
-            break;
-        case CharacterAnim.Atk:
-            break;
-        case CharacterAnim.Dead:
-            anim.SetTrigger("Dead");
-            break;
+                break;
+            case CharacterAnim.Walk:
+                anim.SetTrigger("Walk");
+                break;
+            case CharacterAnim.Atk:
+                
+                break;
+            case CharacterAnim.Dead:
+                anim.SetTrigger("Dead");
+                break;
+        }
     }
 
+    public enum CharacterAnim
+    {
+        Idle,
+        Walk,
+        Atk,
+        Dead,
+    }
 }
-}
-
-public enum CharacterAnim
-{
-Idle,
-Walk,
-Atk,
-Dead,
-}*/
