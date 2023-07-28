@@ -32,6 +32,7 @@ namespace finished3
         private List<OverlayTile> rangeFinderTiles;
         [SerializeField] private float _characterTime = 10f;
         public bool startTimer = false;
+        public bool allCharacter;
 
         private void Start()
         {
@@ -107,7 +108,7 @@ namespace finished3
                 {
                     tile.ShowTile();
 
-                    if (characterPrefab.Length != countCharacter)
+                    if (characterPrefab.Length != countCharacter && !allCharacter)
                     {
                         _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
                         _activeCharacterList.Add(_activeCharacter);
@@ -128,6 +129,7 @@ namespace finished3
                     }
                     else
                     {
+                        allCharacter = true;
                         _activeCharacter.isMoving = true;
                         tile.gameObject.GetComponent<OverlayTile>().HideTile();
                     }
