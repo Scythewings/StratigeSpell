@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewGamePlay.unity
     guid: 48ed95ad4877fd541a7145ce744900b4
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 2797f5e9499739e45a5ce76a63ae5b0e
   m_configObjects: {}
