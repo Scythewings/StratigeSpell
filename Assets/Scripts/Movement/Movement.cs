@@ -21,25 +21,25 @@ public class Movement : MonoBehaviour
 
     //animation part
     public Animator anim;
-    public bool walk;
-    
+    //public bool walk;
 
-    
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         _movePoint.parent = null;
         basec = GetComponent<BaseChar>();
-        input = GetComponent<PlayerInput>();      
+        input = GetComponent<PlayerInput>();
         action = basec.ActionPoint;
         anim = GetComponentInChildren<Animator>();
-        walk = false;
-        
+        //walk = false;
+
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         
         if (action > -1)
@@ -74,8 +74,9 @@ public class Movement : MonoBehaviour
         }
         
     }
+    */
 
-    public void MoveDirection(float xDirection, float yDirection) 
+    public void MoveDirection(float xDirection, float yDirection)
     {
         if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(xDirection, yDirection, 0f), .2f, _border))
         {
@@ -84,15 +85,15 @@ public class Movement : MonoBehaviour
             if (xDirection > 0 && !facingRight)
             {
                 if (action != -1)
-                Flip();
+                    Flip();
             }
             else if (xDirection < 0 && facingRight)
             {
                 if (action != -1)
-                Flip();
+                    Flip();
             }
         }
-        
+
     }
 
     public void Flip()
@@ -102,33 +103,37 @@ public class Movement : MonoBehaviour
         charScale.x *= -1;
         transform.localScale = charScale;
     }
+}
+
+    
+    
 
     //Trigger play once then stop.
-    public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
+/*public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
+{
+    switch (_animType)
+        //break is for ending case
     {
-        switch (_animType)
-            //break is for ending case
-        {
-            case CharacterAnim.Idle:
-                
-                break;
-            case CharacterAnim.Walk:
-                anim.SetTrigger("Walk");
-                break;
-            case CharacterAnim.Atk:
-                break;
-            case CharacterAnim.Dead:
-                anim.SetTrigger("Dead");
-                break;
-        }
+        case CharacterAnim.Idle:
 
+            break;
+        case CharacterAnim.Walk:
+            anim.SetTrigger("Walk");
+            break;
+        case CharacterAnim.Atk:
+            break;
+        case CharacterAnim.Dead:
+            anim.SetTrigger("Dead");
+            break;
     }
+
+}
 }
 
 public enum CharacterAnim
 {
-    Idle,
-    Walk,
-    Atk,
-    Dead,
-}
+Idle,
+Walk,
+Atk,
+Dead,
+}*/

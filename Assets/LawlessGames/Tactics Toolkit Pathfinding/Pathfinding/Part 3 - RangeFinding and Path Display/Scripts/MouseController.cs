@@ -146,6 +146,8 @@ namespace finished3
 
             if (Vector2.Distance(_activeCharacter.transform.position, path[0].transform.position) < 0.001f)
             {
+                _activeCharacter.GetComponent<Animator>();
+                AnimPlay(CharacterAnim.Walk);
                 PositionCharacterOnLine(path[0]);
                 path.RemoveAt(0);
             }
