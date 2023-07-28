@@ -28,6 +28,8 @@ namespace finished3
         private ArrowTranslator arrowTranslator;
         private List<OverlayTile> path;
         private List<OverlayTile> rangeFinderTiles;
+        [SerializeField] private float _characterTime = 10f;
+        public bool startTimer = false;
 
         private void Start()
         {
@@ -61,10 +63,17 @@ namespace finished3
             }
 
 
-            if (Input.GetKeyDown("q"))
+
+            if (Input.GetKeyDown("q") || _characterTime <= 0)
             {
-                SwitchCharacter();               
+                SwitchCharacter();
+                startTimer = true;
             }
+
+            if (startTimer)
+            {
+                _characterTime -= Time.deltaTime;
+            }            
 
             if (hit.HasValue)
             {
@@ -163,6 +172,9 @@ namespace finished3
             ClearArrowPath();
             _activeCharacter.isMoving = false;
             _activeCharacter.isFreeze = false;
+            _characterTime = 10f;
+            CloseInRangeTiles(_activeCharacter.numberOfMovement);
+
 
             //Swap            
             _activeCharacterIndex = (_activeCharacterIndex + 1) % _activeCharacterList.Count;
@@ -220,6 +232,15 @@ namespace finished3
             foreach (var item in rangeFinderTiles)
             {
                 item.ShowTile();
+            }
+        }
+
+        private void CloseInRangeTiles(int range)
+        {
+            rangeFinderTiles = rangeFinder.GetTilesInRange(new Vector2Int(_activeCharacter.standingOnTile.gridLocation.x, _activeCharacter.standingOnTile.gridLocation.y), range);
+            foreach (var item in rangeFinderTiles)
+            {
+                item.HideTile();
             }
         }
     }
