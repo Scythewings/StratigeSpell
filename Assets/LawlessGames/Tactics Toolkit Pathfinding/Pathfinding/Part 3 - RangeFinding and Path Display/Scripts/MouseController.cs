@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using static finished3.ArrowTranslator;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 using UnityEngine.TestTools;
 using UnityEngine.TextCore.Text;
 
