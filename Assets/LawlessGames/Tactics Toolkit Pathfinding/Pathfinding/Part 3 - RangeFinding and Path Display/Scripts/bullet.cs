@@ -22,6 +22,7 @@ public class bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Physics2D.IgnoreLayerCollision(0, 7);
+        Physics2D.IgnoreLayerCollision(5, 7);
 
         if (collision.gameObject.TryGetComponent<CharacterDetail>(out CharacterDetail enemyComponent))
         {

@@ -54,7 +54,6 @@ namespace finished3
             {
                 if (character.isDead)
                 {
-                    character.deathTime -= Time.deltaTime;
                     animController.AnimPlay(character.GetComponent<Animator>(), AnimationController.CharacterAnim.Dead);
                     character.standingOnTile.isBlocked = false;
 
@@ -113,6 +112,7 @@ namespace finished3
                         if (characterPrefab.Length != countCharacter && !allCharacter)
                         {
                             _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
+                            _activeCharacter.GetComponentInChildren<HealthBar>();
                             _activeCharacterList.Add(_activeCharacter);
                             PositionCharacterOnLine(tile);
                             _activeCharacter.standingOnTile.isBlocked = true;
@@ -131,6 +131,7 @@ namespace finished3
                         }
                         else
                         {
+                            checkTeam.justStartGame = true;
                             allCharacter = true;
                             _activeCharacter.isMoving = true;
                             tile.gameObject.GetComponent<OverlayTile>().HideTile();
