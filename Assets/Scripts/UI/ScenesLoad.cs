@@ -9,19 +9,17 @@ public class ScenesLoad : MonoBehaviour
     public Animator transition;
     public float transitionTime = 1f;
 
-    [SerializeField] int _sceneIndex = 0;
-    public int sceneIndex => _sceneIndex;
-
     public void LoadNextScene()
     {
-        StartCoroutine(LoadScene(sceneIndex));
+        StartCoroutine(LoadingScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    IEnumerator LoadScene(int SceneIndex)
+    IEnumerator LoadingScene(int SceneIndex) 
     {
         transition.SetTrigger("Start");
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(transitionTime);
+
         SceneManager.LoadScene(SceneIndex);
     }
 }
