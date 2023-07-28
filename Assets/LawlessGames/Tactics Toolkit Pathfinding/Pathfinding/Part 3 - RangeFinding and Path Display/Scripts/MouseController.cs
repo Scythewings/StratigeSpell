@@ -4,6 +4,7 @@ using System.Linq;
 using static finished3.ArrowTranslator;
 using static UnityEditor.Progress;
 using UnityEngine.TestTools;
+using UnityEngine.TextCore.Text;
 
 namespace finished3
 {
@@ -47,11 +48,14 @@ namespace finished3
         {
             RaycastHit2D? hit = GetFocusedOnTile();
 
-
             foreach (CharacterDetail character in _activeCharacterList)
             {
                 if (character.isDead)
                 {
+                    character.deathTime -= Time.deltaTime;
+                    animController.AnimPlay(character.GetComponent<Animator>(), AnimationController.CharacterAnim.Dead);
+                    character.standingOnTile.isBlocked = false;
+
                     if (character.team == "Red")
                     {
                         checkTeam.redAlive--;

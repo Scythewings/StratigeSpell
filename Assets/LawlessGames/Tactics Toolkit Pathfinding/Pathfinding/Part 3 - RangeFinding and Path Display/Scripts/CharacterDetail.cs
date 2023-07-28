@@ -17,10 +17,14 @@ namespace finished3
         public int protectedTime = 2;
         public int skillsCoolDown = 3;
         public int skillscountDown = 0;
+        public AnimationController animController;
+        public Animator anim;
+        public float deathTime = 2f;
 
         private void Start()
         {
             health = maxHealth;
+            anim = GetComponent<Animator>();
         }
         public void takeDamage(float damageAmount)
         {
@@ -28,7 +32,8 @@ namespace finished3
             if (health <= 0)
             {
                 gameObject.GetComponent<CharacterDetail>().isDead = true;
-                Destroy(gameObject);
+                gameObject.layer = 0;
+                //Destroy(gameObject);
             }
         }
     }
