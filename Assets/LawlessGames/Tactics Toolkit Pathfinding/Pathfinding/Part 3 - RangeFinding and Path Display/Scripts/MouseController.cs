@@ -140,9 +140,10 @@ namespace finished3
         private void MoveAlongPath()
         {
             _activeCharacter.standingOnTile.isBlocked = false;
+            animController.AnimPlay(_activeCharacter.GetComponent<Animator>(), AnimationController.CharacterAnim.Walk);
             var step = speed * Time.deltaTime;
 
-            animController.AnimPlay(_activeCharacter.GetComponent<Animator>(), AnimationController.CharacterAnim.Walk);
+            //animController.AnimPlay(_activeCharacter.GetComponent<Animator>(), AnimationController.CharacterAnim.Walk);
             float zIndex = path[0].transform.position.z;
             _activeCharacter.transform.position = Vector2.MoveTowards(_activeCharacter.transform.position, path[0].transform.position, step);
             _activeCharacter.transform.position = new Vector3(_activeCharacter.transform.position.x, _activeCharacter.transform.position.y, zIndex);
