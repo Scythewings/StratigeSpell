@@ -21,30 +21,30 @@ public class Movement : MonoBehaviour
 
     //animation part
     public Animator anim;
-    public bool walk;
-    
+    //public bool walk;
 
-    
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         _movePoint.parent = null;
         basec = GetComponent<BaseChar>();
-        input = GetComponent<PlayerInput>();      
+        input = GetComponent<PlayerInput>();
         action = basec.ActionPoint;
         anim = GetComponentInChildren<Animator>();
-        walk = false;
-        
+        //walk = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         if (action > -1)
         {
-            
+
             transform.position = Vector3.MoveTowards(transform.position, _movePoint.position, _speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, _movePoint.position) == 0f)
@@ -57,25 +57,26 @@ public class Movement : MonoBehaviour
                 else if (input.moveLeft)
                 {
                     AnimPlay(CharacterAnim.Walk);
-                    MoveDirection(-2f, 0); 
+                    MoveDirection(-2f, 0);
                 }
                 else if (input.moveUp)
                 {
                     AnimPlay(CharacterAnim.Walk);
-                    MoveDirection( 0, 2f);
+                    MoveDirection(0, 2f);
                 }
                 else if (input.moveDown)
                 {
                     AnimPlay(CharacterAnim.Walk);
-                    MoveDirection( 0, -2f);
+                    MoveDirection(0, -2f);
                 }
-              
+
             }
         }
-        
+
     }
 
-    public void MoveDirection(float xDirection, float yDirection) 
+
+    public void MoveDirection(float xDirection, float yDirection)
     {
         if (!Physics2D.OverlapCircle(_movePoint.position + new Vector3(xDirection, yDirection, 0f), .2f, _border))
         {
@@ -84,15 +85,15 @@ public class Movement : MonoBehaviour
             if (xDirection > 0 && !facingRight)
             {
                 if (action != -1)
-                Flip();
+                    Flip();
             }
             else if (xDirection < 0 && facingRight)
             {
                 if (action != -1)
-                Flip();
+                    Flip();
             }
         }
-        
+
     }
 
     public void Flip()
@@ -103,32 +104,36 @@ public class Movement : MonoBehaviour
         transform.localScale = charScale;
     }
 
+
+
+
+
     //Trigger play once then stop.
     public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
     {
         switch (_animType)
-            //break is for ending case
+        //break is for ending case
         {
             case CharacterAnim.Idle:
-                
+
                 break;
             case CharacterAnim.Walk:
                 anim.SetTrigger("Walk");
                 break;
             case CharacterAnim.Atk:
+                
                 break;
             case CharacterAnim.Dead:
                 anim.SetTrigger("Dead");
                 break;
         }
-
     }
-}
 
-public enum CharacterAnim
-{
-    Idle,
-    Walk,
-    Atk,
-    Dead,
+    public enum CharacterAnim
+    {
+        Idle,
+        Walk,
+        Atk,
+        Dead,
+    }
 }

@@ -179,6 +179,8 @@ MonoBehaviour:
   - {fileID: 3588979173527554839, guid: 357f93ca57d91014ab8fd01f0203d9c1, type: 3}
   - {fileID: 3137259732176950476, guid: 13234ddae4a584f4ba60e8e83ba7399e, type: 3}
   _activeCharacter: {fileID: 0}
+  _characterTime: 10
+  startTimer: 0
 --- !u!1 &502557074
 GameObject:
   m_ObjectHideFlags: 0
