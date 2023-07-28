@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationController
-{
-    public Animator anim;
-
-    public void AnimPlay(CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
+{   
+    public void AnimPlay(Animator anim, CharacterAnim _animType = CharacterAnim.Idle) // Idle is default animation
     {
         switch (_animType)
         //break is for ending case

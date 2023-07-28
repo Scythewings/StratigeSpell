@@ -142,14 +142,13 @@ namespace finished3
             _activeCharacter.standingOnTile.isBlocked = false;
             var step = speed * Time.deltaTime;
 
+            animController.AnimPlay(_activeCharacter.GetComponent<Animator>(), AnimationController.CharacterAnim.Walk);
             float zIndex = path[0].transform.position.z;
             _activeCharacter.transform.position = Vector2.MoveTowards(_activeCharacter.transform.position, path[0].transform.position, step);
             _activeCharacter.transform.position = new Vector3(_activeCharacter.transform.position.x, _activeCharacter.transform.position.y, zIndex);
 
             if (Vector2.Distance(_activeCharacter.transform.position, path[0].transform.position) < 0.001f)
             {
-                _activeCharacter.GetComponent<Animator>();
-                animController.AnimPlay(AnimationController.CharacterAnim.Walk);
                 PositionCharacterOnLine(path[0]);
                 path.RemoveAt(0);
             }
