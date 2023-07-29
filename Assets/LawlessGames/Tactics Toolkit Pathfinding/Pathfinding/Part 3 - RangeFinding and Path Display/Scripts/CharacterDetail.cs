@@ -15,7 +15,7 @@ namespace finished3
         [HideInInspector] public bool isProtected = false;
         public string team;
         [HideInInspector] public int protectedTime = 2;
-        [HideInInspector] public int skillsCoolDown = 3;
+        public int skillsCoolDown = 3;
         [HideInInspector] public int skillscountDown = 0;
 
         [SerializeField] HealthBar healthBar;
