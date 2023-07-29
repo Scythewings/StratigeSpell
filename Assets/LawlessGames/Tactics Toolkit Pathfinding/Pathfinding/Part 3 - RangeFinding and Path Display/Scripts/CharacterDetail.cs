@@ -4,6 +4,7 @@ namespace finished3
 {
     public class CharacterDetail : MonoBehaviour
     {
+        private CamController camcon;
         [SerializeField] float health, maxHealth = 3f;
         public OverlayTile standingOnTile;
         public int numberOfMovement = 3;
@@ -24,11 +25,20 @@ namespace finished3
         private void Start()
         {
             health = maxHealth;
+            foreach (var go in Resources.FindObjectsOfTypeAll<GameObject>())
+            {
+                if (go.GetComponent<CamController>())
+                {
+                    camcon = go.GetComponent<CamController>();
+                }
+            }
         }
         public void takeDamage(float damageAmount)
         {
             health -= damageAmount;
             healthBar.UpdateHealthBars(health, maxHealth);
+            camcon.cameraShake(2, 1);
+
             if (health <= 0)
             {
                 gameObject.GetComponent<CharacterDetail>().isDead = true;

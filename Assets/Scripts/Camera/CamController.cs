@@ -48,9 +48,9 @@ public class CamController : MonoBehaviour
 
     public void cameraShake(float intensity, float duration)
     {
-        CinemachineBasicMultiChannelPerlin Noise = FollowChar.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        CinemachineBasicMultiChannelPerlin Noise = DefaultCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         Noise.m_AmplitudeGain = intensity;
-        goofy = intensity;
+        goofy = intensity / 2;
         shakeTimer = duration;
     }
 
@@ -69,6 +69,7 @@ public class CamController : MonoBehaviour
             open = !open;
         }
 
+        Debug.Log(shakeTimer);
         ///// CAMERA SHAKE /////
         if (shakeTimer > 0)
         {
@@ -77,7 +78,8 @@ public class CamController : MonoBehaviour
         else if (shakeTimer <= 0)
         {
             //timer over
-            CinemachineBasicMultiChannelPerlin Noise = FollowChar.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+            CinemachineBasicMultiChannelPerlin Noise = DefaultCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             Noise.m_AmplitudeGain = 0f;
             Mathf.Lerp(goofy, 0f, shakeTimer / shakeTimerDur);
         }
