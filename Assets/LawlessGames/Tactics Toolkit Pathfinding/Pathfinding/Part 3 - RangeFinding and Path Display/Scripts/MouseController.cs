@@ -33,6 +33,7 @@ namespace finished3
         [SerializeField] private float _characterTime = 10f;
         public bool startTimer = false;
         public bool allCharacter;
+        public bool pauseGame;
 
         private void Start()
         {
@@ -45,15 +46,12 @@ namespace finished3
             animController = new AnimationController(); 
         }
 
-        void LateUpdate()
+        private void FixedUpdate()
         {
-            RaycastHit2D? hit = GetFocusedOnTile();
-
             foreach (CharacterDetail character in _activeCharacterList)
             {
                 if (character.isDead)
                 {
-                    character.deathTime -= Time.deltaTime;
                     animController.AnimPlay(character.GetComponent<Animator>(), AnimationController.CharacterAnim.Dead);
                     character.standingOnTile.isBlocked = false;
 
@@ -68,79 +66,87 @@ namespace finished3
                     _activeCharacterList.Remove(character);
                 }
             }
+        }
 
+        void LateUpdate()
+        {
+            RaycastHit2D? hit = GetFocusedOnTile();
 
-
-            if (Input.GetKeyDown("q") || _characterTime <= 0)
+            if (!pauseGame)
             {
-                SwitchCharacter();
-                startTimer = true;
-            }
 
-            if (startTimer)
-            {
-                _characterTime -= Time.deltaTime;
-            }            
-
-            if (hit.HasValue)
-            {
-                OverlayTile tile = hit.Value.collider.gameObject.GetComponent<OverlayTile>();
-                cursor.transform.position = tile.transform.position;
-                cursor.gameObject.GetComponent<SpriteRenderer>().sortingOrder = tile.transform.GetComponent<SpriteRenderer>().sortingOrder;
-
-                if (rangeFinderTiles.Contains(tile) && !_activeCharacter.isMoving && !_activeCharacter.isFreeze)
+                if (Input.GetKeyDown("q") || _characterTime <= 0)
                 {
-                    path = pathFinder.FindPath(_activeCharacter.standingOnTile, tile, rangeFinderTiles);
-
-                    ClearArrowPath();
-
-                    for (int i = 0; i < path.Count; i++)
-                    {
-                        var previousTile = i > 0 ? path[i - 1] : _activeCharacter.standingOnTile;
-                        var futureTile = i < path.Count - 1 ? path[i + 1] : null;
-
-                        var arrow = arrowTranslator.TranslateDirection(previousTile, path[i], futureTile);
-                        path[i].SetSprite(arrow);
-                    }
+                    SwitchCharacter();
+                    startTimer = true;
                 }
 
-                if (Input.GetMouseButtonDown(0))
+                if (startTimer)
                 {
-                    tile.ShowTile();
+                    _characterTime -= Time.deltaTime;
+                }
 
-                    if (characterPrefab.Length != countCharacter && !allCharacter)
+                if (hit.HasValue)
+                {
+                    OverlayTile tile = hit.Value.collider.gameObject.GetComponent<OverlayTile>();
+                    cursor.transform.position = tile.transform.position;
+                    cursor.gameObject.GetComponent<SpriteRenderer>().sortingOrder = tile.transform.GetComponent<SpriteRenderer>().sortingOrder;
+
+                    if (rangeFinderTiles.Contains(tile) && !_activeCharacter.isMoving && !_activeCharacter.isFreeze)
                     {
-                        _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
-                        _activeCharacterList.Add(_activeCharacter);
-                        PositionCharacterOnLine(tile);
-                        _activeCharacter.standingOnTile.isBlocked = true;
-                        _activeCharacterIndex = countCharacter;
+                        path = pathFinder.FindPath(_activeCharacter.standingOnTile, tile, rangeFinderTiles);
 
-                        if (countCharacter % 2 == 0)
+                        ClearArrowPath();
+
+                        for (int i = 0; i < path.Count; i++)
                         {
-                            _activeCharacter.team = "Red";
-                            checkTeam.redAlive++;
+                            var previousTile = i > 0 ? path[i - 1] : _activeCharacter.standingOnTile;
+                            var futureTile = i < path.Count - 1 ? path[i + 1] : null;
+
+                            var arrow = arrowTranslator.TranslateDirection(previousTile, path[i], futureTile);
+                            path[i].SetSprite(arrow);
+                        }
+                    }
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        tile.ShowTile();
+
+                        if (characterPrefab.Length != countCharacter && !allCharacter)
+                        {
+                            _activeCharacter = Instantiate(characterPrefab[countCharacter]).GetComponent<CharacterDetail>();
+                            _activeCharacter.GetComponentInChildren<HealthBar>();
+                            _activeCharacterList.Add(_activeCharacter);
+                            PositionCharacterOnLine(tile);
+                            _activeCharacter.standingOnTile.isBlocked = true;
+                            _activeCharacterIndex = countCharacter;
+
+                            if (countCharacter % 2 == 0)
+                            {
+                                _activeCharacter.team = "Red";
+                                checkTeam.redAlive++;
+                            }
+                            else
+                            {
+                                _activeCharacter.team = "Blue";
+                                checkTeam.blueAlive++;
+                            }
                         }
                         else
                         {
-                            _activeCharacter.team = "Blue";
-                            checkTeam.blueAlive++;
+                            checkTeam.justStartGame = true;
+                            allCharacter = true;
+                            _activeCharacter.isMoving = true;
+                            tile.gameObject.GetComponent<OverlayTile>().HideTile();
                         }
                     }
-                    else
-                    {
-                        allCharacter = true;
-                        _activeCharacter.isMoving = true;
-                        tile.gameObject.GetComponent<OverlayTile>().HideTile();
-                    }
                 }
-            }            
 
-            if (path.Count > 0 && _activeCharacter.isMoving)
-            {
-                MoveAlongPath();               
-            }            
-
+                if (path.Count > 0 && _activeCharacter.isMoving)
+                {
+                    MoveAlongPath();
+                }
+            }
         }
 
         private void MoveAlongPath()
@@ -252,6 +258,11 @@ namespace finished3
             {
                 item.HideTile();
             }
+        }
+
+        public void PauseGame()
+        {
+            pauseGame = !pauseGame;
         }
     }
 }

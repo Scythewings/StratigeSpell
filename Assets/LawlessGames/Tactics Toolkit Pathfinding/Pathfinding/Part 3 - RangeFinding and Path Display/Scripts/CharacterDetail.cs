@@ -14,26 +14,26 @@ namespace finished3
         [HideInInspector] public bool isDead = false;
         [HideInInspector] public bool isProtected = false;
         public string team;
-        public int protectedTime = 2;
-        public int skillsCoolDown = 3;
-        public int skillscountDown = 0;
-        public AnimationController animController;
-        public Animator anim;
-        public float deathTime = 2f;
+        [HideInInspector] public int protectedTime = 2;
+        [HideInInspector] public int skillsCoolDown = 3;
+        [HideInInspector] public int skillscountDown = 0;
+
+        [SerializeField] HealthBar healthBar;
+
 
         private void Start()
         {
             health = maxHealth;
-            anim = GetComponent<Animator>();
         }
         public void takeDamage(float damageAmount)
         {
             health -= damageAmount;
+            healthBar.UpdateHealthBars(health, maxHealth);
             if (health <= 0)
             {
                 gameObject.GetComponent<CharacterDetail>().isDead = true;
                 gameObject.layer = 0;
-                //Destroy(gameObject);
+                Destroy(gameObject,2f);
             }
         }
     }

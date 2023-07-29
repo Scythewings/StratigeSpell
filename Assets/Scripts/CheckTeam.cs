@@ -2,11 +2,13 @@ using finished3;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CheckTeam : MonoBehaviour
 {
     public int redAlive;
     public int blueAlive;
+    public bool justStartGame;
 
     void Start()
     {
@@ -15,13 +17,14 @@ public class CheckTeam : MonoBehaviour
 
     void Update()
     {
-        if (redAlive == 0)
+        if (redAlive == 0 && justStartGame)
         {
-            //end blue win
+            SceneManager.LoadScene("End_BlueWin");
         }
-        else if (blueAlive == 0)
+        
+        if (blueAlive == 0 && justStartGame)
         {
-            //end red win
+            SceneManager.LoadScene("End_RedWin");
         }
     }
 }
