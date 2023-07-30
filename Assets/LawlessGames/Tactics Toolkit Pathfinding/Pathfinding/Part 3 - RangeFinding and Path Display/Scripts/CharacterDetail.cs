@@ -37,7 +37,7 @@ namespace finished3
         {
             health -= damageAmount;
             healthBar.UpdateHealthBars(health, maxHealth);
-            camcon.cameraShake(2, 1);
+            camcon.cameraShake(1, 1);
 
             if (health <= 0)
             {
